@@ -1,0 +1,18 @@
+#!/bin/sh
+
+if [ -f $HOME/.config/dmenurc ]; then
+  . $HOME/.config/dmenurc
+else
+  DMENU='dmenu -i'
+fi
+
+choice=$(echo -e "Fullscreen\nWindow\nPortion\nDelay 5s" | $DMENU)
+
+case "$choice" in
+  Fullscreen) command="scrot --silent" ;;
+  Window) command="scrot --silent --focused" ;;
+  Portion) command="scrot --silent --select --freeze" ;;
+  Delay\ 5s) command="scrot --silent -d 5" ;;
+esac
+
+$command $HOME/Immagini/'%Y-%m-%d_$wx$h.png' && notify-send --icon=camera-photo "Schermata salvata in Immagini" && mpv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga
