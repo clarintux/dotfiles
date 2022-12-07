@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -f $HOME/.config/dmenurc ]; then
+  . $HOME/.config/dmenurc
+else
+  DMENU='dmenu -i'
+fi
+
+echo "" | $DMENU -p Calculate: | xargs -r echo | bc 2>&1 | $DMENU -p Answer:
