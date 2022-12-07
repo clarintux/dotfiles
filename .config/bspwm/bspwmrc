@@ -1,0 +1,74 @@
+#!/bin/sh
+
+xsetroot -cursor_name left_ptr &
+pgrep -x sxhkd > /dev/null || sxhkd &
+nitrogen --restore &
+pgrep -x picom > /dev/null || picom -b -c -f &
+pgrep -x tint2 > /dev/null || tint2 &
+pgrep -x nm-applet > /dev/null || nm-applet &
+pgrep -x volumeicon > /dev/null || volumeicon &
+pgrep -x dunst > /dev/null || dunst &
+$TERMINAL --class dropdown &
+
+bspc monitor -d          
+#bspc monitor -d 1 2 3 4 5 6 7 8 9 0
+
+# for other monitors find out names with arandr or xrandr, then:
+#bspc monitor LVDS1 -d 1 2 3 4 ....
+
+bspc config border_width         3
+bspc config window_gap          10
+bspc config top_padding          22
+bspc config active_border_color '#282828'
+bspc config normal_border_color '#282828'
+bspc config focused_border_color '#fabd2f'
+bspc config presel_feedback_color '#d79921'
+bspc config urgent_border_color '#dd2727'
+
+bspc config click_to_focus              none
+bspc config automatic_scheme            spiral #alternate,spiral,longest_side
+bspc config initial_polarity            first_child #first_child,second_child
+bspc config pointer_action1             move
+bspc config pointer_action2             resize_side
+bspc config pointer_action3             resize_corner
+bspc config pointer_modifier            mod4
+bspc config single_monocle              false
+bspc config focus_follows_pointer       true
+bspc config split_ratio                 0.52
+bspc config borderless_monocle          true
+bspc config gapless_monocle             true
+bspc config remove_disabled_monitors    true
+bspc config merge_overlapping_monitors  true
+
+bspc rule -r "*"
+bspc rule -a dropdown sticky=on state=floating rectangle=1180x260+50+23 hidden=on layer=above
+bspc rule -a cpu sticky=on state=floating rectangle=180x240+660+23 layer=above
+bspc rule -a ram sticky=on state=floating rectangle=180x240+850+23 layer=above
+bspc rule -a Zathura state=tiled focus=on
+bspc rule -a Xarchiver state=floating follow=on focus=on
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Galculator state=pseudo_tiled focus=on sticky=on
+bspc rule -a Gnome-mines desktop='^9' state=pseudo_tiled follow=on
+bspc rule -a Quadrapassel desktop='^9' state=pseudo_tiled follow=on
+bspc rule -a Four-in-a-row desktop='^9' state=pseudo_tiled follow=on
+bspc rule -a Sol desktop='^9' state=pseudo_tiled follow=on
+bspc rule -a perl desktop='^9' state=floating follow=on
+bspc rule -a Soffice desktop='^10' follow=on
+bspc rule -a Icedove desktop='^6'
+bspc rule -a *:*:neomutt dusktop='^6'
+bspc rule -a feh state=floating
+bspc rule -a icecat desktop='^2' follow=on
+bspc rule -a iceweasel desktop='^2' follow=on
+bspc rule -a newsboat desktop='^1'
+bspc rule -a *:*:ranger desktop='^3'
+bspc rule -a Transmission-gtk desktop='^2' follow=on focus=on
+bspc rule -a *:*:ncmpcpp desktop='^4'
+bspc rule -a mpv state=pseudo_tiled follow=on sticky=on
+bspc rule -a vlc state=pseudo_tiled follow=on sticky=on
+bspc rule -a Audacity desktop='^7' follow=on
+bspc rule -a openshot desktop='^7' follow=on
+bspc rule -a Pavucontrol state=floating follow=on focus=on
+bspc rule -a Nitrogen state=floating follow=on focus=on
+bspc rule -a Nm-connection-editor state=floating follow=on focus=on
+#bspc rule -a Kupfer.py focus=on
+#bspc rule -a Screenkey manage=off
