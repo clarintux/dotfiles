@@ -131,8 +131,8 @@ countdown ()
     fi
 }
 
-### TIME
-TIME ()
+### SHOW DATE
+show_date ()
 {
     while true
         do
