@@ -1,0 +1,29 @@
+#!/bin/sh
+
+MOVE=$1
+DESKTOPS=$(bspc query -D)
+DESK=$(bspc query -D -d)
+
+count=0
+for d in $DESKTOPS ; do
+    count=$(($count + 1))
+    echo $count
+    if [ "$d" = "$DESK" ]; then
+        case $MOVE in
+            right)
+                if [ "$count" = 10 ] ; then
+                    bspc node -d '^1'
+                else
+                    descriptor="^$(($count + 1))"
+                    bspc node -d $descriptor --follow
+                fi ;;
+            left)
+                if [ "$count" = 1 ] ; then
+                    bspc node -d '^10'
+                else
+                    descriptor="^$(($count - 1))"
+                    bspc node -d $descriptor --follow
+                fi ;;
+        esac
+    fi
+done
