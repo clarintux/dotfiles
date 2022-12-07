@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ "$1" = 1 ] ; then
+    quantity="a new mail"
+else
+    quantity="$1 new mails"
+fi
+
+notify-send --urgency=critical --app-name=neomutt --icon=mail-read "Neomutt: $1 new mail(s)" &>/dev/null &
