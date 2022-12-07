@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo -e "PROCESSES\t%RAM"
+ps axch -o cmd:15,%mem --sort=-%mem | head
+sleep 5
