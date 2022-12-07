@@ -1,0 +1,31 @@
+#!/bin/sh
+
+if [ -f $HOME/.config/dmenurc ]; then
+  . $HOME/.config/dmenurc
+else
+  DMENU='dmenu -i'
+fi
+
+if [ -n "$1" ] ; then
+
+    case $1 in
+        www.*|http*)
+            $BROWSER "$1";
+            exit;;
+    esac
+
+    choice=$(echo -e "Internet\nwikipedia\narch" | $DMENU -p Open_with:) ;
+
+    case "$choice" in
+        Internet)
+            url="https://duckduckgo.com/html/?q=$1";;
+        wikipedia)
+            url="https://en.wikipedia.org/wiki/$1";;
+        arch)
+            url="https://wiki.archlinux.org/index.php/$1";;
+    esac
+
+    $BROWSER "$url"
+else
+    echo "Usage: dmenu_openurl <URL or term to search>" | $DMENU -p Error:
+fi
