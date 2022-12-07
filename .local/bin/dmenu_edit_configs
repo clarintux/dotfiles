@@ -1,0 +1,25 @@
+#!/bin/sh
+
+if [ -f $HOME/.config/dmenurc ]; then
+  . $HOME/.config/dmenurc
+else
+  DMENU='dmenu -i'
+fi
+
+choice=$(echo -e "bash\nprofile\nzsh\nzprofile\nbspwm\nmpd\nmutt\nncmpcpp\nsxhkd\nvim\nxinit" | $DMENU -p Edit/Open:)
+
+[[ ! $choice ]] && exit
+
+case "$choice" in
+  bash) $TERMINAL -e $EDITOR $HOME/.bashrc exit & ;;
+  profile) $TERMINAL -e $EDITOR $HOME/.bash_profile exit & ;;
+  zsh) $TERMINAL -e $EDITOR $HOME/.zshrc exit & ;;
+  zprofile) $TERMINAL -e $EDITOR $HOME/.zprofile exit & ;;
+  bspwm) $TERMINAL -e $EDITOR $HOME/.config/bspwm/bspwmrc exit & ;;
+  mpd) $TERMINAL -e $EDITOR $HOME/.config/mpd/mpd.conf exit & ;;
+  mutt) $TERMINAL -e $EDITOR $HOME/.config/neomutt/neomuttrc exit & ;;
+  ncmpcpp) $TERMINAL -e $EDITOR $HOME/.config/ncmpcpp/config exit & ;;
+  sxhkd) $TERMINAL -e $EDITOR $HOME/.config/sxhkd/sxhkdrc exit & ;;
+  vim) $TERMINAL -e $EDITOR $HOME/.vimrc exit & ;;
+  xinit) $TERMINAL -e $EDITOR $HOME/.xinitrc exit & ;;
+esac
