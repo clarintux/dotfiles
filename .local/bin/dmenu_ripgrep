@@ -1,0 +1,30 @@
+#!/bin/sh
+
+if [ -f $HOME/.config/dmenurc ]; then
+  . $HOME/.config/dmenurc
+else
+  DMENU='dmenu -i'
+fi
+
+choice1=$(echo -e "File\nWord" | $DMENU -p Search:)
+[[ -z "$choice1" ]] && exit
+
+search=$(echo | $DMENU -p Search:)
+
+[[ -z "$search" ]] && exit
+
+if [ "$choice1" = "File" ]; then
+    choice2=$(locate "$search" | $DMENU -l 10 -p "Select file:")
+else
+    choice2=$(rg "$search" $HOME | $DMENU -l 10 -p "Select file:" | awk -F':' '{print $1}')
+fi
+
+[[ -z "$choice2" ]] && exit
+
+filetype=$(xdg-mime query filetype $choice2)
+
+if [ "$filetype" = "text/plain" ]; then
+    $TERMINAL -e $EDITOR $choice2
+else
+    xdg-open $choice2
+fi
