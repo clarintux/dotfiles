@@ -1,0 +1,18 @@
+#!/bin/sh
+
+if [ -f $HOME/.config/dmenurc ]; then
+  . $HOME/.config/dmenurc
+else
+  DMENU='dmenu -i'
+fi
+
+SELECT=$(echo -e "Poweroff\nReboot\nSuspend\nExit" | $DMENU -p System:)
+
+[[ ! $SELECT ]] && exit
+
+case "$SELECT" in
+    Poweroff) systemctl poweroff ;;
+    Reboot) systemctl reboot ;;
+    Suspend) systemctl suspend ;;
+    Exit) bspc quit ;;
+esac
