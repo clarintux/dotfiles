@@ -1,0 +1,61 @@
+browser "w3m %u 2>/dev/null && rm ~/.w3m/cookie"
+pager internal
+article-sort-order date-asc
+datetime-format "%d/%m/%Y"
+
+notify-always no
+notify-program "new_articles"
+notify-format "%n"
+
+# Feed settings
+prepopulate-query-feeds yes
+refresh-on-startup yes
+auto-reload yes
+reload-time 20
+reload-threads 100
+
+macro w set browser "mpv %u &> /dev/null &" ; open-in-browser ; set browser "w3m %u 2>/dev/null && rm ~/.w3m/cookie"
+
+# bind keys
+bind-key G end
+bind-key g home
+bind-key , macro-prefix
+bind-key h quit
+bind-key SPACE pagedown
+bind-key b pageup
+bind-key BACKSPACE quit
+bind-key j down
+bind-key k up
+bind-key j next articlelist
+bind-key k prev articlelist
+bind-key l open
+bind-key H prev-feed
+bind-key L next-feed
+bind-key c toggle-show-read-feeds
+bind-key u show-urls
+
+color background red default bold
+color listfocus black yellow
+color listfocus_unread black yellow
+color listnormal yellow default
+color listnormal_unread red default
+color info black green
+
+highlight all "══.*" yellow default standout bold
+highlight all "-==-.*" yellow default standout bold
+highlight all "═\\[.*" yellow default standout bold
+highlight feedlist ".*(0/[0-9]+))" cyan
+
+highlight article "(^Feed:.*|^Titolo:.*|^Autore:.*)" red default bold
+highlight article "(^Collegamento:.*|^Data:.*)" green default bold
+highlight article "https?://[^ ]+" blue default bold
+highlight article "^(Titolo):.*$" yellow default bold
+highlight article "^(Autore):.*$" cyan default bold
+highlight article "\\[[0-9][0-9]*\\]" magenta default bold
+highlight article "\\[immagine\\ [0-9]+\\]" green default
+highlight article "\\[embedded flash: [0-9][0-9]*\\]" green default
+highlight article ":.*\\(link\\)$" cyan default
+highlight article ":.*\\(image\\)$" blue default
+highlight article ":.*\\(embedded flash\\)$" magenta default
+
+# vim: ft=config:
