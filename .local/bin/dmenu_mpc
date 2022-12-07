@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [ -f $HOME/.config/dmenurc ]; then
+  . $HOME/.config/dmenurc
+else
+  DMENU='dmenu -i'
+fi
+
+SELECT=$(mpc playlist --format '%position% %title% by %artist%' | $DMENU -l 10 -p Play: | awk '{print $1}')
+
+[[ ! $SELECT ]] && exit
+
+mpc play "$SELECT"
+notify-send --icon=audio-x-generic "Now Playing" "$(mpc --format '%title% \n%artist% - %album%' current)"
