@@ -1,0 +1,27 @@
+#!/bin/sh 
+#
+# It's messy. I don't know much sed...
+
+if [ -f $HOME/.config/dmenurc ]; then
+  . $HOME/.config/dmenurc
+else
+  DMENU='dmenu -i'
+fi
+
+url_yt="https://yewtu.be/search?q="
+
+search=$(echo | $DMENU -p "YouTube search:")
+
+[[ ! $search ]] && exit
+
+url=${url_yt}${search}
+
+output=$(wget -qO- "$url")
+
+result="$(echo "$output" | grep -E "youtube.com/watch|p dir" | sed 's/<p dir="auto">//g' | tr '\n' ' ' | sed 's/<\/p>//g' | sed 's/<a title="Watch on YouTube" href="https:\/\/www.youtube.com/^https:\/\/yewtu.be/g' | sed 's/">/\n/g' | awk '{$1=$1}1')"
+
+select="$(echo "$result" | $DMENU -l 20 -p Videos:)"
+
+[[ ! $select ]] && exit
+
+echo "$select" | cut -d "^" -f2 | xargs mpv --script-opts=ytdl_hook-ytdl_path=yt-dlp &>/dev/null
