@@ -1,0 +1,28 @@
+# MS Word documents
+application/msword; /usr/bin/libreoffice --writer %s &> /dev/null &
+application/vnd.ms-excel; /usr/bin/libreoffice --calc %s &> /dev/null &
+application/vnd.openxmlformats-officedocument.presentationml.presentation; /usr/bin/libreoffice --impress %s &> /dev/null &
+application/vnd.oasis.opendocument.text; /usr/bin/libreoffice --writer %s &> /dev/null &
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; /usr/bin/libreoffice --writer %s &> /dev/null &
+
+# HTML
+text/html; w3m -I %{charset} -T text/html; copiousoutput;
+text/plain; $EDITOR %s
+
+# PDFs
+application/pdf; /usr/bin/zathura %s &> /dev/null &
+
+# Images
+image/png; /usr/bin/sxiv %s &> /dev/null &
+image/jpeg; /usr/bin/sxiv %s &> /dev/null &
+image/jpg; /usr/bin/sxiv %s &> /dev/null &
+image/*; /usr/bin/sxiv %s &> /dev/null &
+
+# Audio
+audio/*; setsid mpv --quiet %s &; copiousoutput
+
+# Video
+video/*; setsid mpv --quiet %s &; copiousoutput
+
+# PGP
+application/pgp-encrypted; gpg -d '%s'; copiousoutput
