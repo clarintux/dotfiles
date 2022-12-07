@@ -1,0 +1,112 @@
+!   _        _      _    
+!  | |  _  _(_)__ _(_)___
+!  | |_| || | / _` | (_-<
+!  |____\_,_|_\__, |_/__/
+!             |___/      
+!  __  __
+!  \ \/ /_ _ ___ ___ ___ _  _ _ _ __ ___ ___
+!   >  <| '_/ -_|_-</ _ \ || | '_/ _/ -_|_-<
+!  /_/\_\_| \___/__/\___/\_,_|_| \__\___/__/
+!
+
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: true
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcdfilter
+
+XTerm.termName: xterm-256color
+XTerm.vt100.metaSendsEscape: true
+XTerm.vt100.backarrowKey: false
+XTerm.ttyModes: erase ^?
+XTerm.vt100.saveLines: 4096
+XTerm*renderFont: true
+XTerm*faceName: xft:Source Code Pro:style=Medium:size=10:antialias=true:hinting=true
+XTerm*faceSize: 10
+XTerm*utf8: 2
+XTerm*locale: true
+
+XTerm.vt100.translations: #override \n\
+  Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+  Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
+  Ctrl <Key>minus: smaller-vt-font() \n\
+  Ctrl <Key>plus: larger-vt-font()
+
+!! URxvt
+URxvt*imLocale: it_IT.UTF-8
+!URxvt*termName: rxvt-unicode-256color
+URxvt*termName: rxvt-unicode
+URxvt*buffered: false
+URxvt.intensityStyles: false
+URxvt.font: xft:Source Code Pro:style=Medium:size=11.5:antialias=true:hinting=true
+URxvt.boldFont: xft:Source Code Pro:style=Bold:size=11.5:antialias=true:hinting=true
+URxvt.italicFont: xft:Source Code Pro:style=Medium Italic:size=11.5:antialias=true:hinting=true
+URxvt.boldItalicfont: xft:Source Code Pro:style=Bold Italic:size=11.5:antialias=true:hinting=true
+URxvt.letterSpace: -1
+URxvt.lineSpace: 0
+URxvt.internalBorder: 6
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: false
+URxvt.saveline: 2048
+URxvt.scrollBar: false
+URxvt.scrollBar_right: false
+URxvt.urgentOnBell: true
+URxvt.depth: 32
+URxvt*inheritPixmap: false
+URxvt*transparent: false
+URxvt.background: [92]#282828
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+! hard contrast: *background: #1d2021
+*background: #282828
+! soft contrast: *background: #32302f
+*foreground: #ebdbb2
+! Black + DarkGrey
+*color0:  #282828
+*color8:  #928374
+! DarkRed + Red
+*color1:  #cc241d
+*color9:  #fb4934
+! DarkGreen + Green
+*color2:  #98971a
+*color10: #b8bb26
+! DarkYellow + Yellow
+*color3:  #d79921
+*color11: #fabd2f
+! DarkBlue + Blue
+*color4:  #458588
+*color12: #83a598
+! DarkMagenta + Magenta
+*color5:  #b16286
+*color13: #d3869b
+! DarkCyan + Cyan
+*color6:  #689d6a
+*color14: #8ec07c
+! LightGrey + White
+*color7:  #a89984
+*color15: #ebdbb2
+
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+
+! disable scrollback buffer to be able to scroll in the pager itself
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+
+! Disable printing the terminal contents when pressing PrintScreen.
+URxvt.print-pipe: "cat > /dev/null"
+
+URxvt.perl-ext-common:      clipboard
+! cut and paste 
+URxvt.clipboard.autocopy: true
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
