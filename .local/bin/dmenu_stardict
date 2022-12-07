@@ -1,0 +1,36 @@
+#!/bin/sh
+
+if [ -f $HOME/.config/dmenurc ]; then
+  . $HOME/.config/dmenurc
+else
+  DMENU='dmenu -i'
+fi
+
+SELECT=$(echo -e "Eng-->Ita\nIta-->Eng\nGerm-->Ita\nIta-->Germ" | $DMENU -p Translate:)
+
+[[ ! $SELECT ]] && exit
+
+WORD=$(echo | $DMENU -p "Translate ($SELECT):")
+if [ -z "$WORD" ]; then
+        exit 1
+fi
+
+case $SELECT in
+    "Eng-->Ita") DICT="quick_english-italian" X=4 ;;
+    "Ita-->Eng") DICT="quick_italian-english" X=4 ;;
+    "Germ-->Ita") DICT="German - Italian" X=4 ;; 
+    "Ita-->Germ") DICT="Italian - German" X=5 ;;
+esac
+
+RESULT=$(sdcv -e --utf8-output -u "$DICT" "$WORD")
+
+TRANSLATION=$(echo "$RESULT" | awk 'NR<2 {print $1}')
+
+if [ "$TRANSLATION" == "Nothing" ]; then
+    echo "Nothing found for $WORD" | $DMENU -p Translation:
+    exit
+fi
+
+TRANSLATION=$(echo "$RESULT" | awk "NR>$X" | cut -d "-" -f2 | cut -d "/" -f1)
+
+echo -e "$TRANSLATION" | $DMENU -p Translation:
