@@ -14,7 +14,7 @@ auto-reload yes
 reload-time 20
 reload-threads 100
 
-macro w set browser "mpv %u &> /dev/null &" ; open-in-browser ; set browser "w3m %u 2>/dev/null && rm ~/.w3m/cookie"
+macro w set browser "mpv --script-opts=ytdl_hook-ytdl_path=yt-dlp %u &> /dev/null &" ; open-in-browser ; set browser "w3m %u 2>/dev/null && rm ~/.w3m/cookie"
 
 # bind keys
 bind-key G end
