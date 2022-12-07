@@ -5,7 +5,7 @@
 " |_____\__,_|_|\__, |_|___/  (_)_/ |_|_| |_| |_|_|  \___|
 "               |___/                                     
 " 
-" My vim config. 
+" My vim config.. 
 
 set nocompatible
 filetype plugin indent on
