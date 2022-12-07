@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ "$1" = 1 ] ; then
+    quantity="one unread article"
+else
+    quantity="$1 unread articles"
+fi
+
+notify-send --icon=view-pim-news "Newsboat: $1 unread article(s)" &>/dev/null &
