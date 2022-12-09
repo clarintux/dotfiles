@@ -14,7 +14,7 @@ super + shift Return
 super + b
 	$BROWSER
 
-# Iceweasel
+# Search with Internet browser or open url
 super + v
 	dmenu_openurl $(xsel)
 
@@ -108,7 +108,7 @@ super + minus
 super + {_,shift + }q
 	bspc node -{c,k}
 
-# alternate between the tiled and monocle layout
+# alternate between the tiled and monocle layout (all windows fullscreen)
 super + m
 	bspc desktop -l next
 
