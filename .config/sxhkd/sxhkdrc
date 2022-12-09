@@ -31,7 +31,7 @@ super + w
     change_wal
 
 # Calculate 
-super + c
+super + shift + ctrl +@space
     dmenu_calc
 
 # edit config files
