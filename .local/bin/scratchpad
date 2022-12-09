@@ -1,4 +1,4 @@
-#!/usr/sh
+#!/bin/sh
 
 if [ -z $1 ]; then
 	echo "Usage: $0 <name of hidden scratchpad window>"
