@@ -2,6 +2,10 @@
 # wm independent hotkeys
 #
 
+# show hotkeys in dmenu
+super + shift + s
+    dmenu_shortcuts
+
 # terminal emulator
 super + Return
 	$TERMINAL
