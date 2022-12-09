@@ -16,7 +16,7 @@ search=$(echo | $DMENU -p Search:)
 if [ "$choice1" = "File" ]; then
     choice2=$(locate "$search" | $DMENU -l 10 -p "Select file:")
 else
-    choice2=$(rg "$search" $HOME | $DMENU -l 10 -p "Select file:" | awk -F':' '{print $1}')
+    choice2=$(rg --hidden "$search" $HOME | $DMENU -l 10 -p "Select file:" | awk -F':' '{print $1}')
 fi
 
 [[ -z "$choice2" ]] && exit
