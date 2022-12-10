@@ -2,7 +2,7 @@
 
 INRES="1280x800"
 OUTRES="1280x800"
-FPS="30"
+FPS="25"
 
 if [ -f $HOME/.config/dmenurc ]; then
   . $HOME/.config/dmenurc
@@ -15,9 +15,9 @@ select=$(echo -e "Start recording\nStop recording" | $DMENU -p "Select:")
 if [ "$select" = "Start recording" ]; then
     notify-send --icon=camera-video "Start recording desktop"
     ffmpeg -f x11grab -s "$INRES" -r "$FPS" -i :0.0 -f alsa \
-        -i hw:0 -vcodec libx264 -s "$OUTRES" \
+        -i hw:0 -vcodec h264 -crf 0 -preset ultrafast -s "$OUTRES" \
         -acodec libmp3lame -ab 128k -ar 44100 \
-        -threads 0 -f flv "$HOME/Video/screencast-$(date '+%y%m%d-%H%M-%S').mkv" > /dev/null
+        -threads 0 -f flv "$HOME/Video/screencast-$(date '+%y%m%d-%H%M-%S').mp4" > /dev/null
 elif [ "$select" = "Stop recording" ]; then
     killall -INT ffmpeg
     notify-send --icon=camera-video "Stop recording desktop"
