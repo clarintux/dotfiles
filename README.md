@@ -15,6 +15,8 @@ This repository contains my personal dotfiles.
 I'm an average Linu user and not an expert...!
 
 Screnshoots:
+![Screenshot 1](https://github.com/clarintux/dotfiles/blob/master/.local/share/misc/screenshots/2022-12-10_1280x800_001.png "Screenshot 1")
+![Screenshot 2](https://github.com/clarintux/dotfiles/blob/master/.local/share/misc/screenshots/2022-12-10_1280x800.png "Screenshot 2")
 
 
 --------------------------------
