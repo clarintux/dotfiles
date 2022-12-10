@@ -66,6 +66,10 @@ ctrl + alt + l
 # Screenschot
 Print
     dmenu_screenshot
+    
+# Record desktop with ffmpeg
+super + r
+    record_desktop
 
 # program launcher
 super + @space
