@@ -8,7 +8,7 @@ else
   DMENU='dmenu -i'
 fi
 
-url_yt="https://yewtu.be/search?q="
+url_yt="https://invidious.snopyta.org/search?q="
 
 search=$(echo | $DMENU -p "YouTube search:")
 
@@ -18,7 +18,7 @@ url=${url_yt}${search}
 
 output=$(wget -qO- "$url")
 
-result="$(echo "$output" | grep -E "youtube.com/watch|p dir" | sed 's/<p dir="auto">//g' | tr '\n' ' ' | sed 's/<\/p>//g' | sed 's/<a title="Watch on YouTube" href="https:\/\/www.youtube.com/^https:\/\/yewtu.be/g' | sed 's/">/\n/g' | awk '{$1=$1}1')"
+result="$(echo "$output" | grep -E "youtube.com/watch|p dir" | sed 's/<p dir="auto">//g' | tr '\n' ' ' | sed 's/<\/p>//g' | sed 's/<a title="Watch on YouTube" href="https:\/\/www.youtube.com/^https:\/\/invidious.snopyta.org/g' | sed 's/">/\n/g' | awk '{$1=$1}1')"
 
 select="$(echo "$result" | $DMENU -l 20 -p Videos:)"
 
