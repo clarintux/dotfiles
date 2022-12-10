@@ -9,8 +9,11 @@ pgrep -x nm-applet > /dev/null || nm-applet &
 pgrep -x volumeicon > /dev/null || volumeicon &
 pgrep -x dunst > /dev/null || dunst &
 $TERMINAL --class dropdown &
+pgrep -x ranger > /dev/null || $TERMINAL --class ranger -e ranger &
+pgrep -x ncmpcpp > /dev/null || start_ncmpcpp &
+pgrep -x newsboat > /dev/null || $TERMINAL --class newsboat -e newsboat &
 
-bspc monitor -d          
+bspc monitor -d          
 #bspc monitor -d 1 2 3 4 5 6 7 8 9 0
 
 # for other monitors find out names with arandr or xrandr, then:
@@ -57,12 +60,13 @@ bspc rule -a Soffice desktop='^10' follow=on
 bspc rule -a Icedove desktop='^6'
 bspc rule -a *:*:neomutt dusktop='^6'
 bspc rule -a feh state=floating
-bspc rule -a icecat desktop='^2' follow=on
-bspc rule -a iceweasel desktop='^2' follow=on
-bspc rule -a newsboat desktop='^1'
-bspc rule -a *:*:ranger desktop='^3'
+bspc rule -a $BROWSER desktop='^2' follow=on
+bspc rule -a newsboat desktop='^5'
 bspc rule -a Transmission-gtk desktop='^2' follow=on focus=on
-bspc rule -a *:*:ncmpcpp desktop='^4'
+bspc rule -a ncmpcpp desktop='^4'
+bspc rule -a clock desktop='^4'
+bspc rule -a visualizer desktop='^4'
+bspc rule -a ranger desktop='^3'
 bspc rule -a mpv state=pseudo_tiled follow=on sticky=on
 bspc rule -a vlc state=pseudo_tiled follow=on sticky=on
 bspc rule -a Audacity desktop='^7' follow=on
