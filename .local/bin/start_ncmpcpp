@@ -1,0 +1,5 @@
+#!/bin/sh
+
+$TERMINAL --class ncmpcpp -e ncmpcpp &
+$TERMINAL --class clock -e ncmpcpp -s clock & 
+$TERMINAL --class visualizer -e ncmpcpp -s visualizer &
