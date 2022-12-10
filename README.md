@@ -13,6 +13,10 @@ This repository contains my personal dotfiles.
 - Other: dmenu, scripts, tint2
 
 I'm an average Linu user and not an expert...!
+
+Screnshoots:
+
+
 --------------------------------
 To install my setup:
 ```
