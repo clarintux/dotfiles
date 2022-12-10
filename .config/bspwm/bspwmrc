@@ -12,6 +12,8 @@ $TERMINAL --class dropdown &
 pgrep -x ranger > /dev/null || $TERMINAL --class ranger -e ranger &
 pgrep -x ncmpcpp > /dev/null || start_ncmpcpp &
 pgrep -x newsboat > /dev/null || $TERMINAL --class newsboat -e newsboat &
+pgrep -x neomutt > /dev/null || $TERMINAL --class neomutt -e neomutt &
+pgrep -x $BROWSER > /dev/null || $BROWSER &
 
 bspc monitor -d          
 #bspc monitor -d 1 2 3 4 5 6 7 8 9 0
@@ -58,14 +60,14 @@ bspc rule -a Sol desktop='^9' state=pseudo_tiled follow=on
 bspc rule -a perl desktop='^9' state=floating follow=on
 bspc rule -a Soffice desktop='^10' follow=on
 bspc rule -a Icedove desktop='^6'
-bspc rule -a *:*:neomutt dusktop='^6'
+bspc rule -a neomutt desktop='^6'
 bspc rule -a feh state=floating
 bspc rule -a $BROWSER desktop='^2' follow=on
 bspc rule -a newsboat desktop='^5'
 bspc rule -a Transmission-gtk desktop='^2' follow=on focus=on
 bspc rule -a ncmpcpp desktop='^4'
-bspc rule -a clock desktop='^4'
-bspc rule -a visualizer desktop='^4'
+bspc rule -a clock desktop='^4' # ncmpcpp
+bspc rule -a visualizer desktop='^4' #ncmpcpp
 bspc rule -a ranger desktop='^3'
 bspc rule -a mpv state=pseudo_tiled follow=on sticky=on
 bspc rule -a vlc state=pseudo_tiled follow=on sticky=on
