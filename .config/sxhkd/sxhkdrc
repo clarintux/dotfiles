@@ -24,7 +24,7 @@ super + v
 
 # File Manager
 super + n
-	$FILE
+	$FILE_VISUAL
 
 # dmenu filemanager
 super + shift + n
