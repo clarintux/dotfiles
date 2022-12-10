@@ -9,28 +9,28 @@ else
 fi
 
 channelsyt="Search Video
-NEURODROME;https://yewtu.be/channel/UCb1cPPukAdNqMT8dzHRhS5Q
-DANIELE FABBRI;https://yewtu.be/channel/UC2pFvJugoHZKTMXGJXK5x-g
-TwoSetViolin;https://yewtu.be/channel/UCAzKFALPuF_EPe-AEI0WFFw
-Martin Froest;https://yewtu.be/channel/UC8cHGJTnwqWIU_as-nPC50w
-Nicolas Baldeyrou;https://yewtu.be/channel/UCcBMAqQ2hW86KPbRV0Nttow
-Corrado Giuffredi;https://yewtu.be/channel/UCD6Bpfm2VVGK-hpX8DXKwOQ
-Emanuela Vitali;https://yewtu.be/channel/UCCAi1CwdLHKxTdJ7BntSMDA
-Alessandro Carbonare;https://yewtu.be/channel/UC8_PKbHhgph77BwRqvoIR_A
-DistroTube;https://yewtu.be/channel/UCVls1GmFKf6WlTraIb_IaJg
-Luke Smith;https://yewtu.be/channel/UC2eYFnH61tmytImy1mTYvhA
-Brodie Robertson;https://yewtu.be/channel/UCld68syR8Wi-GY_n4CaoJGA
-Breaking Italy;https://yewtu.be/channel/UC4V3oCikXeSqYQr0hBMARwg
-Massimo Polidoro;https://yewtu.be/channel/UCSKSPISyIsexROCyKZLkD9w
-Entropy for Life;https://yewtu.be/channel/UCQPnCKNfzKn4OmPrx1KDWvg
-Entropy for Life 2;https://yewtu.be/channel/UC1DK1emDs_9d6yU5SRs8L6w
-Dario Bressanini;https://yewtu.be/channel/UCJphwa8Wsgzsm1zJS4sm-mA
-Dario Bressanini Extra;https://yewtu.be/channel/UC8IKIlUPgPZ_NA1jKbsMfXw
-Barbascura X;https://yewtu.be/channel/UCH-y44M0pvwaZx2rTq0rJoQ
-Barbascura eXtra;https://yewtu.be/channel/UCHi6Q3Z-5oJUC691WLlSntA
-Club Pirata;https://yewtu.be/channel/UCcfaRcXOjy8DLD9BEixZZkQ"
+NEURODROME;https://invidious.snopyta.org/channel/UCb1cPPukAdNqMT8dzHRhS5Q
+DANIELE FABBRI;https://invidious.snopyta.org/channel/UC2pFvJugoHZKTMXGJXK5x-g
+TwoSetViolin;https://invidious.snopyta.org/channel/UCAzKFALPuF_EPe-AEI0WFFw
+Martin Froest;https://invidious.snopyta.org/channel/UC8cHGJTnwqWIU_as-nPC50w
+Nicolas Baldeyrou;https://invidious.snopyta.org/channel/UCcBMAqQ2hW86KPbRV0Nttow
+Corrado Giuffredi;https://invidious.snopyta.org/channel/UCD6Bpfm2VVGK-hpX8DXKwOQ
+Emanuela Vitali;https://invidious.snopyta.org/channel/UCCAi1CwdLHKxTdJ7BntSMDA
+Alessandro Carbonare;https://invidious.snopyta.org/channel/UC8_PKbHhgph77BwRqvoIR_A
+DistroTube;https://invidious.snopyta.org/channel/UCVls1GmFKf6WlTraIb_IaJg
+Luke Smith;https://invidious.snopyta.org/channel/UC2eYFnH61tmytImy1mTYvhA
+Brodie Robertson;https://invidious.snopyta.org/channel/UCld68syR8Wi-GY_n4CaoJGA
+Breaking Italy;https://invidious.snopyta.org/channel/UC4V3oCikXeSqYQr0hBMARwg
+Massimo Polidoro;https://invidious.snopyta.org/channel/UCSKSPISyIsexROCyKZLkD9w
+Entropy for Life;https://invidious.snopyta.org/channel/UCQPnCKNfzKn4OmPrx1KDWvg
+Entropy for Life 2;https://invidious.snopyta.org/channel/UC1DK1emDs_9d6yU5SRs8L6w
+Dario Bressanini;https://invidious.snopyta.org/channel/UCJphwa8Wsgzsm1zJS4sm-mA
+Dario Bressanini Extra;https://invidious.snopyta.org/channel/UC8IKIlUPgPZ_NA1jKbsMfXw
+Barbascura X;https://invidious.snopyta.org/channel/UCH-y44M0pvwaZx2rTq0rJoQ
+Barbascura eXtra;https://invidious.snopyta.org/channel/UCHi6Q3Z-5oJUC691WLlSntA
+Club Pirata;https://invidious.snopyta.org/channel/UCcfaRcXOjy8DLD9BEixZZkQ"
 
-url_vid="https://yewtu.be"
+url_vid="https://invidious.snopyta.org"
 
 channelname=$(echo "$channelsyt" | $DMENU -l 10 -p "YouTube Channels":)
 
@@ -45,7 +45,7 @@ urlchannel=$(echo "$channelname" | cut -d';' -f2-)
 
 output="$(wget -qO- "$urlchannel")"
 
-result="$(echo "$output" | grep -E "youtube.com/watch|p dir" | sed 's/<p dir="auto">//g' | tr '\n' ' ' | sed 's/<\/p>//g' | sed 's/<a title="Watch on YouTube" href="https:\/\/www.youtube.com/^https:\/\/yewtu.be/g' | sed 's/">/\n/g' | awk '{$1=$1}1')"
+result="$(echo "$output" | grep -E "youtube.com/watch|p dir" | sed 's/<p dir="auto">//g' | tr '\n' ' ' | sed 's/<\/p>//g' | sed 's/<a title="Watch on YouTube" href="https:\/\/www.youtube.com/^https:\/\/invidious.snopyta.org/g' | sed 's/">/\n/g' | awk '{$1=$1}1')"
 
 select="$(echo "$result" | $DMENU -l 20 -p Videos:)"
 
