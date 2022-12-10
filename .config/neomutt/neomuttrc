@@ -1,12 +1,13 @@
-source "gpg -dq ~/.config/neomutt/FILE.gpg |"
+source "gpg -dq ~/.config/neomutt/abc2.gpg |"
 source ~/.config/neomutt/colors
+source "$HOME/.config/neomutt/my_email"
 
-set imap_user = "my email"
+set imap_user = $my_email
 set imap_pass = $my_pass
-set smtp_url = "smtps://my_email@smtp.gmail.com:465/"
+set smtp_url = "smtps://${my_email}@smtp.gmail.com:465/"
 set smtp_pass = $my_pass
-set realname = "My name"
-set from = "my_email"
+set realname = $my_name
+set from = $my_email
 set use_from = yes
 set ssl_force_tls = yes
 set copy = no # email are stored in the remote [Gmail]/Sent Mail
