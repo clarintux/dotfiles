@@ -4,12 +4,24 @@ INRES="1280x800"
 OUTRES="1280x800"
 FPS="30"
 
-ffmpeg -f x11grab -s "$INRES" -r "$FPS" -i :0.0 -f alsa \
--i hw:0 -vcodec libx264 -s "$OUTRES" \
--acodec libmp3lame -ab 128k -ar 44100 \
--threads 0 -f flv $1
+if [ -f $HOME/.config/dmenurc ]; then
+  . $HOME/.config/dmenurc
+else
+  DMENU='dmenu -i'
+fi
 
-#ffmpeg -f x11grab -s "$INRES" -r "$FPS" -i :0.0 -f alsa -ac 1 \
-#-i default -vcodec libx264 -s "$OUTRES" \
-#-acodec libmp3lame -ab 128k -ar 44100 \
-#-threads 0 -f flv $1
+select=$(echo -e "Start recording\nStop recording" | $DMENU -p "Select:")
+
+if [ "$select" = "Start recording" ]; then
+    notify-send --icon=camera-video "Start recording desktop"
+    ffmpeg -f x11grab -s "$INRES" -r "$FPS" -i :0.0 -f alsa \
+        -i hw:0 -vcodec libx264 -s "$OUTRES" \
+        -acodec libmp3lame -ab 128k -ar 44100 \
+        -threads 0 -f flv "$HOME/Video/screencast-$(date '+%y%m%d-%H%M-%S').mkv" > /dev/null
+elif [ "$select" = "Stop recording" ]; then
+    killall -INT ffmpeg
+    notify-send --icon=camera-video "Stop recording desktop"
+else
+    echo "Usage: record_desktop <start|stop>" | $DMENU -p Error:
+fi
+
