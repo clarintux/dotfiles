@@ -21,9 +21,7 @@ Screnshoots:
 
 
 My YouTube channel:
-[Clarintux's YouTube channel]
-…
-[GClarintux's YouTube channe]: https://www.youtube.com/channel/UCTguDCZ1oXwijhEtkaycccA
+https://www.youtube.com/channel/UCTguDCZ1oXwijhEtkaycccA
 
 --------------------------------
 To install my setup:
