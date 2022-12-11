@@ -29,6 +29,7 @@ To install my setup:
 sudo pacman -S curl git
 curl https://raw.githubusercontent.com/clarintux/dotfiles/master/.local/bin/install_dotfiles.sh | sh
 sudo pacman -S --needed - < $HOME/.local/share/misc/packages.txt
+git clone https://github.com/clarintux/wallpapers.git $HOME/Immagini/wallpapers
 ```
 (For me...) To push:
 ```
