@@ -6,4 +6,4 @@ else
     quantity="new mails"
 fi
 
-notify-send --urgency=critical --app-name=neomutt --icon=mail-read "Neomutt: $1 $quantity" &>/dev/null && echo "Hello Luigi, you have $1 $quantity." | text2wave | mpv --volume=140 - &>/dev/null
+notify-send --urgency=critical --app-name=neomutt --icon=mail-read "Neomutt: $1 $quantity" &>/dev/null && echo "Hello Luigi, you have $1 $quantity." | text2wave | mpv --volume=130 - &>/dev/null
