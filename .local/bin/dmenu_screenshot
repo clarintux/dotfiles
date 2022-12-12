@@ -15,4 +15,4 @@ case "$choice" in
   Delay\ 5s) command="scrot --silent -d 5" ;;
 esac
 
-$command $HOME/Immagini/'%Y-%m-%d_$wx$h.png' && notify-send --icon=camera-photo "Schermata salvata in Immagini" && mpv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga
+$command $HOME/Immagini/'screenshot-%Y-%m-%d_$wx$h.png' && notify-send --icon=camera-photo "Schermata salvata in Immagini" && mpv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga
