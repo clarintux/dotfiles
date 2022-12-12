@@ -59,7 +59,6 @@ bspc rule -a Four-in-a-row desktop='^9' state=pseudo_tiled follow=on
 bspc rule -a Sol desktop='^9' state=pseudo_tiled follow=on
 bspc rule -a perl desktop='^9' state=floating follow=on
 bspc rule -a Soffice desktop='^10' follow=on
-bspc rule -a Icedove desktop='^6'
 bspc rule -a neomutt desktop='^6'
 bspc rule -a feh state=floating
 bspc rule -a $BROWSER desktop='^2' follow=on
@@ -72,7 +71,7 @@ bspc rule -a ranger desktop='^3'
 bspc rule -a mpv state=pseudo_tiled follow=on sticky=on
 bspc rule -a vlc state=pseudo_tiled follow=on sticky=on
 bspc rule -a Audacity desktop='^7' follow=on
-bspc rule -a openshot desktop='^7' follow=on
+bspc rule -a kdenlive desktop='^7' follow=on
 bspc rule -a Pavucontrol state=floating follow=on focus=on
 bspc rule -a Nitrogen state=floating follow=on focus=on
 bspc rule -a Nm-connection-editor state=floating follow=on focus=on
