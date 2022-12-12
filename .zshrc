@@ -94,7 +94,7 @@ expand-alias-and-accept-line() {
 }
 zle -N accept-line expand-alias-and-accept-line
 
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME' # bar repo
 alias op='xdg-open "$(fzf)"'
 abbrev-alias ..='cd ..'
 abbrev-alias ls='exa -G --color auto'
@@ -123,7 +123,7 @@ abbrev-alias pac='sudo pacman'
 abbrev-alias cmatrix='cmatrix -C cyan -s'
 abbrev-alias meteo='curl "https://wttr.in/Frankfurt?qFm"'
 abbrev-alias news='newsboat -q 2>/dev/null'
-abbrev-alias indirizzo='wget -qO- http://ipecho.net/plain && echo'
+abbrev-alias ip_addres='wget -qO- http://ipecho.net/plain && echo'
 abbrev-alias youtube-music='youtube-dl --extract-audio --audio-format mp3'
 abbrev-alias PP='pipes2-slim'
 
