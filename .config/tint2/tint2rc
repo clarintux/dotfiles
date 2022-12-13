@@ -233,7 +233,7 @@ clock_dwheel_command =
 # Battery
 battery_tooltip = 1
 battery_low_status = 10
-battery_low_cmd = xmessage 'tint2: Battery low!'
+battery_low_cmd = notify-send --urgency=critical --icon=battery "Battery low!"
 battery_full_cmd = 
 bat1_font = Font Awesome v4 Compatibility Bold 11
 bat2_font = Font Awesome v4 Compatibility 1
