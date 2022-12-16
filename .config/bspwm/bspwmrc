@@ -68,8 +68,8 @@ bspc rule -a ncmpcpp desktop='^4'
 bspc rule -a clock desktop='^4' # ncmpcpp
 bspc rule -a visualizer desktop='^4' #ncmpcpp
 bspc rule -a ranger desktop='^3'
-bspc rule -a mpv state=pseudo_tiled follow=on sticky=on
-bspc rule -a vlc state=pseudo_tiled follow=on sticky=on
+bspc rule -a mpv state=floating follow=on sticky=on
+bspc rule -a vlc state=floating follow=on sticky=on
 bspc rule -a Audacity desktop='^7' follow=on
 bspc rule -a kdenlive desktop='^7' follow=on
 bspc rule -a Pavucontrol state=floating follow=on focus=on
