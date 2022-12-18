@@ -42,6 +42,7 @@ colorscheme gruvbox
 set background=dark
 hi Normal guibg=NONE ctermbg=NONE
 let g:airline_powerline_fonts=1
+let g:markdown_folding = 1
 
 au BufRead /tmp/neomutt-* set tw=72
 
@@ -50,6 +51,7 @@ autocmd BufRead,BufNewFile ~/.calcurse/notes/* set filetype=markdown
 autocmd BufRead,BufNewFile *.txt set filetype=plaintext
 autocmd BufRead,BufNewFile /tmp/neomutt-* set filetype=plaintext
 autocmd FileType plaintext setlocal spell spelllang=de,it
+autocmd FileType markdown setlocal spell spelllang=de,it
 
 map <silent> <leader><cr> :noh<cr>
 map <C-j> <C-W>j
