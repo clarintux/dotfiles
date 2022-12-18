@@ -95,7 +95,7 @@ expand-alias-and-accept-line() {
 zle -N accept-line expand-alias-and-accept-line
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME' # bar repo
-alias op='xdg-open "$(fzf)"'
+alias open='xdg-open "$(fzf)"'
 abbrev-alias ..='cd ..'
 abbrev-alias ls='exa -G --color auto'
 abbrev-alias ll='exa -l -a -G --color always'
