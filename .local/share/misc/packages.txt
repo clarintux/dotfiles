@@ -36,6 +36,7 @@ gimp
 git
 gnome-mines
 gsimplecal
+gtk-engine-murrine
 gvfs
 gvfs-mtp
 htop
@@ -79,11 +80,11 @@ parole
 pavucontrol
 picocom
 picom
-polybar
 powerline
 powerline-fonts
 powerline-vim
 pulseaudio
+pulsemixer
 qemu-base
 quadrapassel
 ranger
@@ -112,6 +113,7 @@ ttf-nerd-fonts-symbols-2048-em
 ttf-roboto
 ttf-sourcecodepro-nerd
 tumbler
+ueberzug
 ufw
 unarchiver
 unzip
