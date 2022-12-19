@@ -1,9 +1,9 @@
 #!/bin/sh
 
 if [ "$1" = 1 ] ; then
-    quantity="one unread article"
+    quantity="unread article"
 else
     quantity="unread articles"
 fi
 
-notify-send --icon=view-pim-news "Newsboat: $1 $quantity" &>/dev/null && echo "Hello Luigi, you have $1 $quantity." | text2wave | mpv --volume=130 - &>/dev/null
+notify-send --icon=view-pim-news "Newsboat: $1 $quantity" &>/dev/null && echo "Hello Luigi, you have $1 $quantity." | text2wave | mpv --volume=130 - &>/dev/null &
