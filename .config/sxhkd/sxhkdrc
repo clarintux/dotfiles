@@ -20,7 +20,7 @@ super + b
 
 # Search with Internet browser or open url
 super + v
-	dmenu_openurl $(xsel)
+	dmenu_openurl "$(xsel)"
 
 # File Manager
 super + n
