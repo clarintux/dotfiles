@@ -1,2 +1,1 @@
-# gruvbox ...
-DMENU="dmenu -i -fn fixed -nb #282828 -nf #EBDBB2 -sb #d79921 -sf #000000"
+DMENU="dmenu -i -fn fixed -nb $(xrdb -q | grep -m1 -i "background" | cut -f2) -nf $(xrdb -q | grep -m1 -i "foreground" | cut -f2) -sb $(xrdb -q | grep -m1 -i "color3" | cut -f2) -sf #000000"
