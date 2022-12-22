@@ -2,4 +2,4 @@
 
 image="$(grep "file" $HOME/.config/nitrogen/bg-saved.cfg | sed 's/file=//g')"
 
-i3lock -i "$image"
+i3lock --image "$image" --tiling
