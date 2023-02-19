@@ -65,7 +65,7 @@ alias news='newsboat -q 2>/dev/null'
 alias ip_addres='wget -qO- http://ipecho.net/plain && echo'
 alias youtube-music='youtube-dl --extract-audio --audio-format mp3'
 alias PP='pipes2-slim'
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME' # bar repo
+alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME' # bar repo
 
 ### Preventing nested ranger instances
 ranger() {
