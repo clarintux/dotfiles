@@ -28,6 +28,7 @@ festival-us
 ffmpegthumbnailer
 figlet
 firejail
+flashrom
 foomatic-db
 foomatic-db-gutenprint-ppds
 fortune-mod
@@ -109,6 +110,7 @@ ttf-nerd-fonts-symbols-2048-em
 ttf-noto-nerd
 ttf-sourcecodepro-nerd
 tumbler
+ueberzug
 ufw
 unarchiver
 unzip
