@@ -128,9 +128,11 @@ Ciao dal tuo sistema operativo!!!\n\n"))))
   (kernel-arguments (list "l1tf=full,force mds=full,nosmt mitigations=auto,nosmt nosmt=force modprobe.blacklist=usbmouse,usbkbd quiet loglevel=3"))
 
   (swap-devices (list (swap-space
+                          ; change UUID... blkid 
                         (target (uuid
                                  "ebba7404-6956-41dc-9003-c02967e4eee7")))))
   (mapped-devices (list (mapped-device
+                          ; change UUID... blkid 
                           (source (uuid
                                    "b98f99e1-0760-458d-a7e7-6a6c01f562e9"))
                           (target "home")
@@ -147,6 +149,7 @@ Ciao dal tuo sistema operativo!!!\n\n"))))
                          (dependencies mapped-devices))
                        (file-system
                          (mount-point "/")
+                          ; change UUID... blkid 
                          (device (uuid
                                   "81efaef5-e3ed-43b2-863b-0fe463b9a175"
                                   'ext4))
