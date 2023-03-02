@@ -1,22 +1,32 @@
-#  _          _       _                 _              
-# | |   _   _(_) __ _(_)___     _______| |__  _ __ ___ 
-# | |  | | | | |/ _` | / __|   |_  / __| '_ \| '__/ __|
-# | |__| |_| | | (_| | \__ \_   / /\__ \ | | | | | (__ 
-# |_____\__,_|_|\__, |_|___(_) /___|___/_| |_|_|  \___|
-#               |___/                                  
-#
-# My zsh config.
+# Export 'SHELL' to child processes.  Programs such as 'screen'
+# honor it and otherwise use /bin/sh.
+export SHELL
 
-[[ $- != *i* ]] && return # If not running interactively, don't do anything
+if [[ $- != *i* ]]
+then
+    # We are being invoked from a non-interactive shell.  If this
+    # is an SSH session (as in "ssh host command"), source
+    # /etc/profile so we get PATH and other essential variables.
+    [[ -n "$SSH_CLIENT" ]] && source /etc/profile
 
-[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
-[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
-[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    # Don't do anything else.
+    return
+fi
 
-export PATH=$PATH:$HOME/.local/bin
+export TERM='xterm-256color'
+
+if [ -n "$GUIX_ENVIRONMENT" ]
+then
+    PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%} [env]$%b "
+else
+    PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+fi
+
+export PATH=$HOME/.local/bin:$PATH
+export GUIX_PROFILE="/home/anonymous/.guix-profile"
+. "$GUIX_PROFILE/etc/profile"
 
 autoload -U colors && colors	# Load colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 HISTFILE=~/.local/share/zhistory
 HISTSIZE=10000
@@ -54,12 +64,6 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
 
-
-### EXPORT ###
-export TERM="xterm-256color"    # getting proper colors
-export EDITOR="vim"    # $EDITOR use vim in terminal
-export VISUAL="vim"    # $VISUAL use vim in terminal
-
 ### ABBREVETIONS LIKE FISH...
 # declare a list of expandable aliases to fill up later
 typeset -a ealiases
@@ -94,7 +98,7 @@ expand-alias-and-accept-line() {
 }
 zle -N accept-line expand-alias-and-accept-line
 
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME' # bar repo
+alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME' # bar repo
 alias open='xdg-open "$(fzf)"'
 abbrev-alias ..='cd ..'
 abbrev-alias ls='exa -G --color auto'
@@ -111,14 +115,15 @@ abbrev-alias rm='rm -Iv'
 abbrev-alias cat='bat --italic-text=always --color=auto --theme=gruvbox-dark -Pp'
 abbrev-alias less='bat --italic-text=always --color=auto --theme=gruvbox-dark -n'
 abbrev-alias SS='sudo systemctl'
-distro=$( grep -e "arch" /etc/os-release )
-if [ -n "$distro" ]; then    
-    abbrev-alias update='sudo pacmatic -Syyu'
-    abbrev-alias clean='sudo pacman -Rns $(pacman -Qtdq)'
-else
-    abbrev-alias update='sudo apt update && sudo apt upgrade'
-    abbrev-alias clean='sudo apt --purge autoremove && sudo apt clean && sudo apt autoclean'
-fi
+distro=$(grep -e "ID" /etc/os-release | cut -d '=' -f2)
+case $distro in
+    arch|parabola) alias update='sudo pacmatic -Syyu' ;
+        alias clean='sudo pacman -Rns $(pacman -Qtdq)' ;;
+    debian|ubuntu|trisquel) alias update='sudo apt update && sudo apt upgrade' ;
+        alias clean='sudo apt --purge autoremove && sudo apt clean && sudo apt autoclean' ;;
+    guix) alias update='guix pull && sudo guix system reconfigure /etc/config.scm' ;
+        alias fortune='daikichi fortune' ;;
+esac
 abbrev-alias pac='sudo pacman'
 abbrev-alias cmatrix='cmatrix -C cyan -s'
 abbrev-alias meteo='curl "https://wttr.in/Frankfurt?qFm"'
@@ -131,14 +136,14 @@ abbrev-alias PP='pipes2-slim'
 #### Preventing nested ranger instances
 ranger() {
     if [ -z "$RANGER_LEVEL" ]; then
-        /usr/bin/ranger "$@"
+        ranger "$@"
     else
         exit
     fi
 }
 
 ### ARCHIVE EXTRACTION
-# usage: ex <file>
+# usage: ex 
 ex ()
 {
   if [ -f $1 ] ; then
@@ -156,7 +161,7 @@ ex ()
       *.7z)        7z x $1      ;;
       *.deb)       ar x $1      ;;
       *.tar.xz)    tar xf $1    ;;
-      *.tar.zst)   unzstd $1    ;;      
+      *.tar.zst)   unzstd $1    ;;
       *)           echo "'$1' cannot be extracted via ex()" ;;
     esac
   else
@@ -188,7 +193,7 @@ countdown ()
             done
         mpv /usr/share/sounds/freedesktop/stereo/complete.oga &>/dev/null &
     else
-        echo "Usage: countdown <seconds>"
+        echo "Usage: countdown "
     fi
 }
 
@@ -207,7 +212,7 @@ cheat ()
     if [ -n "$1" ] ; then
         curl https://cheat.sh/$1
     else
-        echo "Usage: cheat <command>"
+        echo "Usage: cheat "
     fi
 }
 
@@ -242,17 +247,17 @@ term_greeting ()
     fi
 }
 
-# ripgrep + fzf: Select file with with occurence of <string> and open it
+# ripgrep + fzf: Select file with with occurence of  and open it
 rip ()
 {
     if [ -n "$1" ] ; then
         rg "$1" . | fzf -m | awk -F':' '{print $1}' | xargs -ro xdg-open
     else
-        echo "Usage: rip <search string>"
+        echo "Usage: rip "
     fi
 }
 
 # Load syntax highlighting; should be last.
-[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+[ -f /gnu/store/*zsh-syntax-highlighting*/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /gnu/store/*zsh-syntax-highlighting*/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
 term_greeting
