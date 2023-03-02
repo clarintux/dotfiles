@@ -4,7 +4,7 @@
 
 # show hotkeys in dmenu
 super + shift + s
-    dmenu_shortcuts
+    $HOME/.local/bin/dmenu_shortcuts
 
 # terminal emulator
 super + Return
@@ -12,7 +12,7 @@ super + Return
 
 # dropdown terminal
 super + shift Return
-	scratchpad dropdown
+	$HOME/.local/bin/scratchpad dropdown
 
 # Internet Browser
 super + b
@@ -20,7 +20,7 @@ super + b
 
 # Search with Internet browser or open url
 super + v
-	dmenu_openurl "$(xsel)"
+	$HOME/.local/bin/dmenu_openurl "$(xsel)"
 
 # File Manager
 super + n
@@ -28,23 +28,23 @@ super + n
 
 # dmenu filemanager
 super + shift + n
-    dmenu_filemanager
+    $HOME/.local/bin/dmenu_filemanager
 
 # Change wallpaper
 super + w
-    change_wal
+    $HOME/.local/bin/change_wal
 
-# Calculate 
+# Calculate
 super + shift + ctrl + @space
-    dmenu_calc
+    $HOME/.local/bin/dmenu_calc
 
 # edit config files
 super + shift + @space
-    dmenu_edit_configs
+    $HOME/.local/bin/dmenu_edit_configs
 
 # play song of mpd playlist
 super + alt + @space
-    dmenu_mpc
+    $HOME/.local/bin/dmenu_mpc
 
 # Mpd controlls...
 XF86AudioStop
@@ -61,15 +61,15 @@ XF86AudioNext
 
 # Lock screen
 ctrl + alt + l
-    i3lock_image
+    $HOME/.local/bin/i3lock_image
 
 # Screenschot
 Print
-    dmenu_screenshot
-    
+    $HOME/.local/bin/dmenu_screenshot
+
 # Record desktop with ffmpeg
 super + r
-    record_desktop
+    $HOME/.local/bin/record_desktop
 
 # program launcher
 super + @space
@@ -77,15 +77,15 @@ super + @space
 
 # search with locate or ripgrep and open file
 super + shift + f
-    dmenu_ripgrep
+    $HOME/.local/bin/dmenu_ripgrep
 
 # YouTube
 super + ctrl + alt + @space
-    dmenu_invidious
+    $HOME/.local/bin/dmenu_invidious
 
 # Stardict
 super + ctrl + @space
-    dmenu_stardict
+    $HOME/.local/bin/dmenu_stardict
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -97,7 +97,7 @@ super + Escape
 
 # quit bspwm
 super + alt + q
-    system_reboot
+    $HOME/.local/bin/system_reboot
     #prompt_yes_no "Quit this session?" "bspc quit"
 
 # quit/restart bspwm
@@ -138,11 +138,11 @@ super + {t,shift + t,s}
 
 # toggle fullscreen
 super + f
-    bspfullscreen
+    $HOME/.local/bin/bspfullscreen
 
 # toggle fullscreen
 super + d
-    bsphide
+    $HOME/.local/bin/bsphide
 
 # set the node flags
 super + ctrl + {m,x,y,z}
@@ -170,7 +170,7 @@ ctrl + alt + {Left,Right}
 
 # send to next/previous desktop in the current monitor
 ctrl + shift + alt + {Left,Right}
-	bspw_move_near_desk {left,right}
+	$HOME/.local/bin/bspw_move_near_desk {left,right}
 
 # focus the last node/desktop
 super + {grave,Tab}
