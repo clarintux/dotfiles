@@ -1,6 +1,6 @@
 ;; Indicate which modules to import to access the variables
 ;; used in this configuration.
-(use-modules (gnu))
+(use-modules (gnu) (gnu packages shells))
 (use-service-modules cups desktop networking xorg sysctl)
 
 (operating-system
@@ -26,6 +26,7 @@ root ALL=(ALL) ALL
                   (name "anonymous")
                   (comment "Anonymous")
                   (group "users")
+                  (shell (file-append zsh "/bin/zsh"))
                   (home-directory "/home/anonymous")
                   (supplementary-groups '("wheel" "netdev" "audio" "video")))
                 %base-user-accounts))
@@ -33,12 +34,30 @@ root ALL=(ALL) ALL
   ;; Packages installed system-wide.
   (packages (append (list (specification->package "bspwm")
                           (specification->package "sxhkd")
+                          (specification->package "polkit-gnome")
+                          (specification->package "libnma")
+                          (specification->package "libmtp")
+                          (specification->package "gvfs")
+                          (specification->package "ntfs-3g")
                           (specification->package "tint2")
                           (specification->package "nitrogen")
+                          (specification->package "feh")
+                          (specification->package "dmenu")
+                          (specification->package "xdotool")
+                          (specification->package "xprop")
+                          (specification->package "xinput")
+                          (specification->package "xkill")
+                          (specification->package "xsetroot")
+                          (specification->package "xsel")
                           (specification->package "dmenu")
                           (specification->package "dunst")
                           (specification->package "picom")
+                          (specification->package "i3lock")
                           (specification->package "lxappearance")
+                          (specification->package "gsimplecal")
+                          (specification->package "arc-theme")
+                          (specification->package "arc-icon-theme")
+                          (specification->package "breeze")
                           (specification->package "mousepad")
                           (specification->package "volumeicon")
                           (specification->package "font-dejavu")
@@ -49,29 +68,72 @@ root ALL=(ALL) ALL
                           (specification->package "font-awesome")
                           (specification->package "icecat")
                           (specification->package "xterm")
+                          (specification->package "most")
                           (specification->package "alacritty")
                           (specification->package "zsh")
                           (specification->package "zsh-autosuggestions")
                           (specification->package "zsh-syntax-highlighting")
                           (specification->package "vim")
+                          (specification->package "vim-full")
+                          (specification->package "vim-syntastic")
+                          (specification->package "vim-airline")
                           (specification->package "vim-airline-themes")
                           (specification->package "neofetch")
                           (specification->package "htop")
+                          (specification->package "bc")
+                          (specification->package "bat")
+                          (specification->package "exa")
+                          (specification->package "ripgrep")
+                          (specification->package "fzf")
+                          (specification->package "cowsay")
+                          (specification->package "cmatrix")
+                          (specification->package "festival")
+                          (specification->package "sl")
+                          (specification->package "figlet")
+                          (specification->package "lolcat")
+                          (specification->package "daikichi")
+                          (specification->package "fortunes-jkirchartz")
                           (specification->package "openssh")
                           (specification->package "curl")
                           (specification->package "git")
                           (specification->package "xrdb")
+                          (specification->package "xdg-utils")
                           (specification->package "thunar")
+                          (specification->package "thunar-archive-plugin")
+                          (specification->package "thunar-volman")
+                          (specification->package "zip")
+                          (specification->package "unzip")
+                          (specification->package "p7zip")
+                          (specification->package "unrar-free")
+                          (specification->package "xarchiver")
                           (specification->package "ranger")
                           (specification->package "neomutt")
                           (specification->package "newsboat")
                           (specification->package "zathura")
+                          (specification->package "zathura-pdf-mupdf")
                           (specification->package "sxiv")
                           (specification->package "mpv")
+                          (specification->package "ffmpeg")
+                          (specification->package "tumbler")
+                          (specification->package "ffmpegthumbnailer")
                           (specification->package "scrot")
                           (specification->package "mpd")
                           (specification->package "mpc")
                           (specification->package "ncmpcpp")
+                          (specification->package "youtube-dl")
+                          (specification->package "yt-dlp")
+                          (specification->package "redshift")
+                          (specification->package "gnome-mines")
+                          (specification->package "quadrapassel")
+                          (specification->package "aisleriot")
+                          (specification->package "gimp")
+                          (specification->package "shotcut")
+                          (specification->package "libreoffice")
+                          (specification->package "telegram-desktop")
+                          (specification->package "qemu")
+                          (specification->package "system-config-printer")
+                          (specification->package "simple-scan")
+                          (specification->package "nss-mdns")
                           (specification->package "iptables")
                           (specification->package "dnscrypt-proxy")
                           (specification->package "nss-certs"))
@@ -103,10 +165,6 @@ COMMIT
 -A INPUT -j REJECT --reject-with icmp6-port-unreachable
 COMMIT
 "))))
-           (service login-service-type
-		    (login-configuration
-		      (motd (plain-file "motd" "\
-Ciao dal tuo sistema operativo!!!\n\n"))))
 	   (service slim-service-type
 		    (slim-configuration
 		      (xorg-configuration
@@ -114,6 +172,10 @@ Ciao dal tuo sistema operativo!!!\n\n"))))
 		      (auto-login? #t)
 		      (default-user "anonymous")))
 	   (modify-services %desktop-services
+                            (login-service-type config =>
+                               (login-configuration
+		                  (motd (plain-file "motd" "\
+Ciao dal tuo sistema operativo!!!\n\n"))))
 			    (sysctl-service-type config =>
 						 (sysctl-configuration
 						   (settings (append '(("vm.swappiness" . "10"))
@@ -123,18 +185,23 @@ Ciao dal tuo sistema operativo!!!\n\n"))))
   (bootloader (bootloader-configuration
                 (bootloader grub-bootloader)
                 (targets (list "/dev/sda"))
+                (menu-entries (list (menu-entry
+                                      (label "Parabola")
+                                      (linux "(ahci0,msdos2)/boot/vmlinuz-linux-libre")
+                                      (linux-arguments '("root=/dev/sda2 rw  l1tf=full,force mds=full,nosmt mitigations=auto,nosmt nosmt=force quiet loglevel=3"))
+                                      (initrd "(ahci0,msdos2)/boot/initramfs-linux-libre.img"))))
                 (keyboard-layout keyboard-layout)))
 
   (kernel-arguments (list "l1tf=full,force mds=full,nosmt mitigations=auto,nosmt nosmt=force modprobe.blacklist=usbmouse,usbkbd quiet loglevel=3"))
 
   (swap-devices (list (swap-space
-                          ; change UUID... blkid 
+                          ; change UUID... blkid
                         (target (uuid
-                                 "ebba7404-6956-41dc-9003-c02967e4eee7")))))
+                                 "b7085fba-fa95-43bf-8d0a-8c7e93be32e9")))))
   (mapped-devices (list (mapped-device
-                          ; change UUID... blkid 
+                          ; change UUID... blkid
                           (source (uuid
-                                   "b98f99e1-0760-458d-a7e7-6a6c01f562e9"))
+                                   "1b62df79-eb8b-4260-a869-cbb1425394ae"))
                           (target "home")
                           (type luks-device-mapping))))
 
@@ -149,9 +216,9 @@ Ciao dal tuo sistema operativo!!!\n\n"))))
                          (dependencies mapped-devices))
                        (file-system
                          (mount-point "/")
-                          ; change UUID... blkid 
+                          ; change UUID... blkid
                          (device (uuid
-                                  "81efaef5-e3ed-43b2-863b-0fe463b9a175"
+                                  "b396f334-4fb5-4ed3-a448-29d94dedfbe9"
                                   'ext4))
                          (type "ext4")
 			 (flags '(no-atime)))
