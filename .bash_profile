@@ -1,38 +1,28 @@
-#    __        _      _   
-#   / /  __ __(_)__ _(_)__
-#  / /__/ // / / _ `/ (_-<
-# /____/\_,_/_/\_, /_/___/
-#             /___/       
-#    __            __                     ____ __   
-#   / /  ___ ____ / /      ___  _______  / _(_) /__ 
-#  / _ \/ _ `(_-</ _ \    / _ \/ __/ _ \/ _/ / / -_)
-# /_.__/\_,_/___/_//_/___/ .__/_/  \___/_//_/_/\__/ 
-#                   /___/_/                         
-#
-# Profile file. Runs on login.
-
-[[ -f ~/.bashrc ]] && . ~/.bashrc
+# Honor per-interactive-shell startup file
+if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
 
 # ~/ Clean-up:
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CACHE_HOME="$HOME/.cache"
-export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
-export LESSHISTFILE="-"
-export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
-export KODI_DATA="${XDG_DATA_HOME:-$HOME/.local/share}/kodi"
-export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
-export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
-#export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
-export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # This line will break some DMs.
-export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/bash_history"
-
-export PERL_DESTRUCT_LEVEL=2 # solve urxvt problem
-export LANG='it_IT.UTF-8'
+#export XDG_CONFIG_HOME="$HOME/.config"
+#export XDG_DATA_HOME="$HOME/.local/share"
+#export XDG_CACHE_HOME="$HOME/.cache"
+#export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
+#export LESSHISTFILE="-"
+#export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
+#export KODI_DATA="${XDG_DATA_HOME:-$HOME/.local/share}/kodi"
+#export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
+#export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
+##export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
+#export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # This line will break some DMs.
+#export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/bash_history"
+#
+#export PERL_DESTRUCT_LEVEL=2 # solve urxvt problem
+#export LANG='it_IT.UTF-8'
 export VISUAL=vim
 export EDITOR=vim
+export SUDO_EDITOR=vim
+#export PAGER=most
 export TERMINAL=alacritty
-export BROWSER=iceweasel
+export BROWSER=icecat
 export READER=zathura
 export VIDEO=mpv
 export IMAGE=sxiv
@@ -58,6 +48,6 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 #[ ! -s ~/.config/mpd/pid ] && mpd
 
 # Start graphical server if not already running.
-if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-  exec startx -- vt1 &> /dev/null
-fi
+#if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+#  exec startx -- vt1 &> /dev/null
+#fi
