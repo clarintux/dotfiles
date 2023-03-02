@@ -1,19 +1,40 @@
-#   _        _      _      ___          _           
-#  | |  _  _(_)__ _(_)___ | _ ) __ _ __| |_  _ _ __ 
-#  | |_| || | / _` | (_-< | _ \/ _` (_-< ' \| '_/ _|
-#  |____\_,_|_\__, |_/__/ |___/\__,_/__/_||_|_| \__|
-#             |___/                                 
-#
-# My bash config
+# Bash initialization for interactive non-login shells and
+# for remote shells (info "(bash) Bash Startup Files").
 
-[[ $- != *i* ]] && return # If not interactively, don't do anything
+# Export 'SHELL' to child processes.  Programs such as 'screen'
+# honor it and otherwise use /bin/sh.
+export SHELL
 
-[ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
-[ -f /usr/share/fzf/completion.bash ] && source /usr/share/fzf/completion.bash
+if [[ $- != *i* ]]
+then
+    # We are being invoked from a non-interactive shell.  If this
+    # is an SSH session (as in "ssh host command"), source
+    # /etc/profile so we get PATH and other essential variables.
+    [[ -n "$SSH_CLIENT" ]] && source /etc/profile
 
-export PATH=$PATH:$HOME/.local/bin
+    # Don't do anything else.
+    return
+fi
 
-PS1="\[\033[01;33m\]\u\[\033[01;36m\]@\[\033[01;31m\]\h\[\033[00m\]\[\033[01;34m\]\w\[\033[00m\]\$ "
+# Source the system-wide file.
+source /etc/bashrc
+
+# Source fzf...
+source /gnu/store/*fzf*/etc/bash_completion.d/fzf
+
+# Adjust the prompt depending on whether we're in 'guix environment'.
+if [ -n "$GUIX_ENVIRONMENT" ]
+then
+    #PS1='\u@\h \w [env]\$ '
+    PS1="\[\033[01;33m\]\u\[\033[01;36m\]@\[\033[01;31m\]\h\[\033[00m\]\[\033[01;34m\]\w\[\033[00m\] [env]\$ "
+else
+    #PS1='\u@\h \w\$ '
+    PS1="\[\033[01;33m\]\u\[\033[01;36m\]@\[\033[01;31m\]\h\[\033[00m\]\[\033[01;34m\]\w\[\033[00m\]\$ "
+fi
+
+export PATH=$HOME/.local/bin:$PATH
+export GUIX_PROFILE="/home/anonymous/.guix-profile"
+. "$GUIX_PROFILE/etc/profile"
 
 if [ -n "$RANGER_LEVEL" ]; then export PS1="\[\033[01;36m\][ranger] $PS1"; fi
 
@@ -49,14 +70,17 @@ alias rm='rm -Iv'
 alias cat='bat --italic-text=always --color=auto --theme=gruvbox-dark -Pp'
 alias less='bat --italic-text=always --color=auto --theme=gruvbox-dark -n'
 alias SS='sudo systemctl'
-distro=$( grep -e "arch" /etc/os-release )
-if [ -n "$distro" ]; then
-    alias update='sudo pacmatic -Syyu'
-    alias clean='sudo pacman -Rns $(pacman -Qtdq)'
-else
-    alias update='sudo apt update && sudo apt upgrade'
-    alias clean='sudo apt --purge autoremove && sudo apt clean && sudo apt autoclean'
-fi
+
+distro=$(grep -e "ID" /etc/os-release | cut -d '=' -f2)
+case $distro in
+    arch|parabola) alias update='sudo pacmatic -Syyu' ;
+        alias clean='sudo pacman -Rns $(pacman -Qtdq)' ;;
+    debian|ubuntu|trisquel) alias update='sudo apt update && sudo apt upgrade' ;
+        alias clean='sudo apt --purge autoremove && sudo apt clean && sudo apt autoclean' ;;
+    guix) alias update='guix pull && sudo guix system reconfigure /etc/config.scm' ;
+        alias fortune='daikichi fortune' ;;
+esac
+
 alias pac='sudo pacman'
 alias cmatrix='cmatrix -C cyan -s'
 alias meteo='curl https://wttr.in/Frankfurt?qFm'
@@ -68,16 +92,16 @@ alias PP='pipes2-slim'
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME' # bar repo
 
 ### Preventing nested ranger instances
-ranger() {
-    if [ -z "$RANGER_LEVEL" ]; then
-        /usr/bin/ranger "$@"
-    else
-        exit
-    fi
-}
+#ranger() {
+#    if [ -z "$RANGER_LEVEL" ]; then
+#        ranger "$@"
+#    else
+#        exit
+#    fi
+#}
 
 ### ARCHIVE EXTRACTION
-# usage: ex <file>
+# usage: ex 
 ex ()
 {
   if [ -f $1 ] ; then
@@ -95,7 +119,7 @@ ex ()
       *.7z)        7z x $1      ;;
       *.deb)       ar x $1      ;;
       *.tar.xz)    tar xf $1    ;;
-      *.tar.zst)   unzstd $1    ;;      
+      *.tar.zst)   unzstd $1    ;;
       *)           echo "'$1' cannot be extracted via ex()" ;;
     esac
   else
@@ -127,7 +151,7 @@ countdown ()
             done
         mpv /usr/share/sounds/freedesktop/stereo/complete.oga &>/dev/null &
     else
-        echo "Usage: countdown <seconds>"
+        echo "Usage: countdown "
     fi
 }
 
@@ -146,7 +170,7 @@ cheat ()
     if [ -n "$1" ] ; then
         curl https://cheat.sh/$1
     else
-        echo "Usage: cheat <command>"
+        echo "Usage: cheat "
     fi
 }
 
@@ -181,13 +205,13 @@ term_greeting ()
     fi
 }
 
-# ripgrep + fzf: Select file with with occurence of <string> and open it
+# ripgrep + fzf: Select file with with occurence of  and open it
 rip ()
 {
     if [ -n "$1" ] ; then
         rg "$1" . | fzf -m | awk -F':' '{print $1}' | xargs -ro xdg-open
     else
-        echo "Usage: rip <search string>"
+        echo "Usage: rip "
     fi
 }
 
