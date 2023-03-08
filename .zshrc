@@ -15,6 +15,8 @@ fi
 
 export TERM='xterm-256color'
 
+autoload -U colors && colors	# Load colors
+
 if [ -n "$GUIX_ENVIRONMENT" ]
 then
     PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%} [env]$%b "
@@ -22,15 +24,22 @@ else
     PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 fi
 
-export PATH=$HOME/.local/bin:$PATH
-export GUIX_PROFILE="/home/anonymous/.guix-profile"
+export PATH="$HOME/.config/guix/current/bin:$HOME/.local/bin:$PATH"
+export INFOPATH="$HOME/.config/guix/current/share/info:$INFOPATH"
+export GUIX_PROFILE="$HOME/.guix-profile"
 . "$GUIX_PROFILE/etc/profile"
 
-autoload -U colors && colors	# Load colors
-
+setopt APPEND_HISTORY
+setopt SHARE_HISTORY
 HISTFILE=~/.local/share/zhistory
 HISTSIZE=10000
 SAVEHIST=10000
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt EXTENDED_HISTORY
+
+# autocompletion using arrow keys (based on history)
+bindkey '\e[A' history-search-backward
+bindkey '\e[B' history-search-forward
 
 ## Options section
 setopt correct                                                  # Auto correct mistakes
@@ -143,7 +152,7 @@ ranger() {
 }
 
 ### ARCHIVE EXTRACTION
-# usage: ex 
+# usage: ex
 ex ()
 {
   if [ -f $1 ] ; then
@@ -259,5 +268,7 @@ rip ()
 
 # Load syntax highlighting; should be last.
 [ -f /gnu/store/*zsh-syntax-highlighting*/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /gnu/store/*zsh-syntax-highlighting*/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+
+[ -f /gnu/store/*zsh-autosuggestions*/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /gnu/store/*zsh-autosuggestions*/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 
 term_greeting
