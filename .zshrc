@@ -1,33 +1,14 @@
-# Export 'SHELL' to child processes.  Programs such as 'screen'
-# honor it and otherwise use /bin/sh.
-export SHELL
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return 
 
-if [[ $- != *i* ]]
-then
-    # We are being invoked from a non-interactive shell.  If this
-    # is an SSH session (as in "ssh host command"), source
-    # /etc/profile so we get PATH and other essential variables.
-    [[ -n "$SSH_CLIENT" ]] && source /etc/profile
-
-    # Don't do anything else.
-    return
-fi
-
-export TERM='xterm-256color'
+[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
+[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
 
 autoload -U colors && colors	# Load colors
 
-if [ -n "$GUIX_ENVIRONMENT" ]
-then
-    PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%} [env]$%b "
-else
-    PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-fi
+PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
-export PATH="$HOME/.config/guix/current/bin:$HOME/.local/bin:$PATH"
-export INFOPATH="$HOME/.config/guix/current/share/info:$INFOPATH"
-export GUIX_PROFILE="$HOME/.guix-profile"
-. "$GUIX_PROFILE/etc/profile"
+[ -d $HOME/.local/bin ] && PATH=$HOME/.local/bin:$PATH
 
 setopt APPEND_HISTORY
 setopt SHARE_HISTORY
@@ -124,9 +105,9 @@ abbrev-alias rm='rm -Iv'
 abbrev-alias cat='bat --italic-text=always --color=auto --theme=gruvbox-dark -Pp'
 abbrev-alias less='bat --italic-text=always --color=auto --theme=gruvbox-dark -n'
 abbrev-alias SS='sudo systemctl'
-distro=$(grep -e "ID" /etc/os-release | cut -d '=' -f2)
+distro=$(grep -e "^ID=" /etc/os-release | cut -d '=' -f2)
 case $distro in
-    arch|parabola) alias update='sudo pacmatic -Syyu' ;
+    arch|parabola) alias update='sudo pacman -Syyu' ;
         alias clean='sudo pacman -Rns $(pacman -Qtdq)' ;;
     debian|ubuntu|trisquel) alias update='sudo apt update && sudo apt upgrade' ;
         alias clean='sudo apt --purge autoremove && sudo apt clean && sudo apt autoclean' ;;
@@ -267,8 +248,7 @@ rip ()
 }
 
 # Load syntax highlighting; should be last.
-[ -f /gnu/store/*zsh-syntax-highlighting*/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /gnu/store/*zsh-syntax-highlighting*/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-
-[ -f /gnu/store/*zsh-autosuggestions*/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /gnu/store/*zsh-autosuggestions*/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 term_greeting
