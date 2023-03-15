@@ -1,40 +1,14 @@
-# Bash initialization for interactive non-login shells and
-# for remote shells (info "(bash) Bash Startup Files").
-
-# Export 'SHELL' to child processes.  Programs such as 'screen'
-# honor it and otherwise use /bin/sh.
-export SHELL
-
-if [[ $- != *i* ]]
-then
-    # We are being invoked from a non-interactive shell.  If this
-    # is an SSH session (as in "ssh host command"), source
-    # /etc/profile so we get PATH and other essential variables.
-    [[ -n "$SSH_CLIENT" ]] && source /etc/profile
-
-    # Don't do anything else.
-    return
-fi
-
-# Source the system-wide file.
-source /etc/bashrc
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
 # Source fzf...
-source /gnu/store/*fzf*/etc/bash_completion.d/fzf
+[ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
+[ -f /usr/share/fzf/completion.bash ] && source /usr/share/fzf/completion.bash
 
-# Adjust the prompt depending on whether we're in 'guix environment'.
-if [ -n "$GUIX_ENVIRONMENT" ]
-then
-    #PS1='\u@\h \w [env]\$ '
-    PS1="\[\033[01;33m\]\u\[\033[01;36m\]@\[\033[01;31m\]\h\[\033[00m\]\[\033[01;34m\]\w\[\033[00m\] [env]\$ "
-else
-    #PS1='\u@\h \w\$ '
-    PS1="\[\033[01;33m\]\u\[\033[01;36m\]@\[\033[01;31m\]\h\[\033[00m\]\[\033[01;34m\]\w\[\033[00m\]\$ "
-fi
+PS1="\[\033[01;33m\]\u\[\033[01;36m\]@\[\033[01;31m\]\h\[\033[00m\]\[\033[01;34m\]\w\[\033[00m\]\$ "
 
-export PATH=$HOME/.local/bin:$PATH
-export GUIX_PROFILE="/home/anonymous/.guix-profile"
-. "$GUIX_PROFILE/etc/profile"
+[ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
+PATH=$HOME/.local/bin:$PATH
 
 if [ -n "$RANGER_LEVEL" ]; then export PS1="\[\033[01;36m\][ranger] $PS1"; fi
 
@@ -71,9 +45,9 @@ alias cat='bat --italic-text=always --color=auto --theme=gruvbox-dark -Pp'
 alias less='bat --italic-text=always --color=auto --theme=gruvbox-dark -n'
 alias SS='sudo systemctl'
 
-distro=$(grep -e "ID" /etc/os-release | cut -d '=' -f2)
+distro=$(grep -e "^ID=" /etc/os-release | cut -d '=' -f2)
 case $distro in
-    arch|parabola) alias update='sudo pacmatic -Syyu' ;
+    arch|parabola) alias update='sudo pacman -Syyu' ;
         alias clean='sudo pacman -Rns $(pacman -Qtdq)' ;;
     debian|ubuntu|trisquel) alias update='sudo apt update && sudo apt upgrade' ;
         alias clean='sudo apt --purge autoremove && sudo apt clean && sudo apt autoclean' ;;
@@ -92,13 +66,13 @@ alias PP='pipes2-slim'
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME' # bar repo
 
 ### Preventing nested ranger instances
-#ranger() {
-#    if [ -z "$RANGER_LEVEL" ]; then
-#        ranger "$@"
-#    else
-#        exit
-#    fi
-#}
+ranger() {
+    if [ -z "$RANGER_LEVEL" ]; then
+        ranger "$@"
+    else
+        exit
+    fi
+}
 
 ### ARCHIVE EXTRACTION
 # usage: ex 
