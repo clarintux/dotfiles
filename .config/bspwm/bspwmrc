@@ -2,13 +2,13 @@
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources &
 xinput set-prop 11 "libinput Tapping Enabled" 1 &
 xsetroot -cursor_name left_ptr &
-pgrep -x "^.*sxhkd*.$" > /dev/null || sxhkd &
+pgrep -x sxhkd > /dev/null || sxhkd &
 nitrogen --restore &
-pgrep -x "^.*picom*.$" > /dev/null || picom -b -c -f &
-pgrep -x "^.*tint2*.$" > /dev/null || tint2 &
-pgrep -x "^.*nm-applet*.$" > /dev/null || nm-applet &
-pgrep -x "^.*volumeicon*.$" > /dev/null || volumeicon &
-pgrep -x "^.*dunst*.$" > /dev/null || dunst &
+pgrep -x picom > /dev/null || picom -b -c -f &
+pgrep -x tint2 > /dev/null || tint2 &
+pgrep -x nm-applet > /dev/null || nm-applet &
+pgrep -x volumeicon > /dev/null || volumeicon &
+pgrep -x dunst > /dev/null || dunst &
 
 bspc monitor -d          
 #bspc monitor -d 1 2 3 4 5 6 7 8 9 0
@@ -56,19 +56,19 @@ bspc rule -a Sol desktop='^9' state=pseudo_tiled follow=on
 bspc rule -a perl desktop='^9' state=floating follow=on
 bspc rule -a Soffice desktop='^10' follow=on
 bspc rule -a neomutt desktop='^6'
-pgrep -x "^.*neomutt*.$" > /dev/null || $TERMINAL --class neomutt,neomutt -e neomutt &
+pgrep -x neomutt > /dev/null || $TERMINAL --class neomutt,neomutt -e neomutt &
 bspc rule -a feh state=floating
-bspc rule -a icecat-default desktop='^2' follow=on
-pgrep -x "^.*$BROWSER*.*$" > /dev/null || $BROWSER &
+bspc rule -a $BROWSER desktop='^2' follow=on
+pgrep -x $BROWSER > /dev/null || $BROWSER &
 bspc rule -a newsboat desktop='^5'
-pgrep -x "^.*newsboat*.$" > /dev/null || $TERMINAL --class newsboat,newsboat -e newsboat &
+pgrep -x newsboat > /dev/null || $TERMINAL --class newsboat,newsboat -e newsboat &
 bspc rule -a Transmission-gtk desktop='^2' follow=on focus=on
 bspc rule -a ncmpcpp desktop='^4'
 bspc rule -a clock desktop='^4' # ncmpcpp
 bspc rule -a visualizer desktop='^4' #ncmpcpp
-pgrep -x "^.*ncmpcpp*.$" > /dev/null || start_ncmpcpp &
+pgrep -x ncmpcpp > /dev/null || $HOME/.local/bin/start_ncmpcpp &
 bspc rule -a ranger desktop='^3'
-pgrep -x "^.*ranger*.*$" > /dev/null || $TERMINAL --class ranger,ranger -e ranger &
+pgrep -x ranger > /dev/null || $TERMINAL --class ranger,ranger -e ranger &
 bspc rule -a mpv state=floating follow=on sticky=on
 bspc rule -a vlc state=floating follow=on sticky=on
 bspc rule -a Audacity desktop='^7' follow=on
