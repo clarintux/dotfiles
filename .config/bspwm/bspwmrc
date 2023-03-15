@@ -43,8 +43,8 @@ bspc config merge_overlapping_monitors  true
 bspc rule -r "*"
 bspc rule -a dropdown sticky=on state=floating rectangle=1180x260+50+23 hidden=on layer=above
 $TERMINAL --class dropdown,dropdown &
-bspc rule -a cpu sticky=on state=floating rectangle=180x240+660+23 layer=above
-bspc rule -a ram sticky=on state=floating rectangle=180x240+850+23 layer=above
+bspc rule -a cpu sticky=on state=floating rectangle=180x240+740+23 layer=above
+bspc rule -a ram sticky=on state=floating rectangle=180x240+920+23 layer=above
 bspc rule -a Zathura state=tiled focus=on
 bspc rule -a Xarchiver state=floating follow=on focus=on
 bspc rule -a Gimp desktop='^8' state=floating follow=on
