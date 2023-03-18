@@ -8,10 +8,10 @@
 # Run with startx.
 
 # Load resource file. Do not background the xrdb command, otherwise programs launched after xrdb may look for resources too early 
-[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+#[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
 # Keyboard layout
-setxkbmap de &
+#setxkbmap de &
 
 #xinput set-prop 10 "libinput Tapping Enabled" 1
 
