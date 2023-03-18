@@ -1,6 +1,7 @@
 #!/bin/sh
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources &
 xinput set-prop 11 "libinput Tapping Enabled" 1 &
+setxkbmap de &
 xsetroot -cursor_name left_ptr &
 pgrep -x sxhkd > /dev/null || sxhkd &
 nitrogen --restore &
