@@ -173,8 +173,8 @@ term_greeting ()
         COW=( "default" "eyes" "tux" )
         case $N in
             0) neofetch ;;
-            1) fortune | cowsay -f "${COW[$(( $RANDOM % 3))]}" | lolcat ;;
-            2) figlet "Ciao Luigi !" | lolcat ;;
+            1) fortune | cowsay -f "${COW[$(( $RANDOM % 3))]}" | lolcat 2>/dev/null ;;
+            2) figlet "Ciao Luigi !" | lolcat 2>/dev/null ;;
         esac
     fi
 }
