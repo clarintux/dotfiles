@@ -17,7 +17,10 @@ export LANG='it_IT.UTF-8'
 export VISUAL=vim
 export EDITOR=vim
 export SUDO_EDITOR=vim
+<<<<<<< HEAD
 #export MANPAGER='less -s -M +Gg'
+=======
+>>>>>>> 76cae92 (Update my bash_profile)
 export TERMINAL=alacritty
 export BROWSER=iceweasel
 export READER=zathura
