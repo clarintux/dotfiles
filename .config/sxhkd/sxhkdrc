@@ -16,7 +16,7 @@ super + shift Return
 
 # Internet Browser
 super + b
-	$BROWSER
+	$HOME/.local/bin/start_tor_browser
 
 # Search with Internet browser or open url
 super + v
