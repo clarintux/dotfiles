@@ -17,10 +17,7 @@ export LANG='it_IT.UTF-8'
 export VISUAL=vim
 export EDITOR=vim
 export SUDO_EDITOR=vim
-<<<<<<< HEAD
 #export MANPAGER='less -s -M +Gg'
-=======
->>>>>>> 76cae92 (Update my bash_profile)
 export TERMINAL=alacritty
 export BROWSER=iceweasel
 export READER=zathura
@@ -45,8 +42,8 @@ export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
 export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 
 # MPD daemon start (if no other user instance exists)
-[ ! -s ~/.config/mpd/pid ] && mpd &> /dev/null
-#[ ! -s ~/.config/mpd/pid ] && mpd
+#[ ! -s ~/.config/mpd/pid ] && mpd &> /dev/null
+pgrep -x mpd > /dev/null || mpd &> /dev/null
 
 # Start graphical server if not already running.
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
