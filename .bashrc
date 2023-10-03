@@ -59,9 +59,9 @@ alias pac='sudo pacman'
 alias cmatrix='cmatrix -C cyan -s'
 alias meteo='curl https://wttr.in/Frankfurt?qFm'
 alias op='xdg-open "$(fzf)"'
-alias news='newsboat -q 2>/dev/null'
+alias news='torsocks newsboat -q 2>/dev/null'
 alias ip_addres='wget -qO- http://ipecho.net/plain && echo'
-alias youtube-music='youtube-dl --extract-audio --audio-format mp3'
+alias youtube-music='torsocks youtube-dl --extract-audio --audio-format mp3'
 alias PP='pipes2-slim'
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME' # bar repo
 
@@ -142,7 +142,7 @@ show_date ()
 cheat ()
 {
     if [ -n "$1" ] ; then
-        curl https://cheat.sh/$1
+        torsocks curl https://cheat.sh/$1
     else
         echo "Usage: cheat "
     fi
@@ -152,9 +152,9 @@ cheat ()
 corona ()
 {
     if [ -n "$1" ] ; then
-        curl https://corona-stats.online/$1
+        torsocks curl https://corona-stats.online/$1
     else
-        curl https://corona-stats.online?top=25
+        torsocks curl https://corona-stats.online?top=25
     fi
 }
 
