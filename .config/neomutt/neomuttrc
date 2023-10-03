@@ -2,28 +2,30 @@ source "gpg -dq ~/.config/neomutt/abc2.gpg |"
 source ~/.config/neomutt/colors
 source "$HOME/.config/neomutt/my_email"
 
+set folder = "imap://${my_email}@${my_server}:143"
+set smtp_url = "smtp://${my_email}@${my_server}:25"
+set smtp_pass = $my_pass
 set imap_user = $my_email
 set imap_pass = $my_pass
-set smtp_url = "smtps://${my_email}@smtp.gmail.com:465/"
-set smtp_pass = $my_pass
+
 set realname = $my_name
 set from = $my_email
 set use_from = yes
 set ssl_force_tls = yes
-set copy = no # email are stored in the remote [Gmail]/Sent Mail
+set copy = yes # email are stored in the remote [Gmail]/Sent Mail
 set mail_check = 60 # minimum time between two scans
 set timeout = 10 # maximum time to wait for input from user
 unset imap_passive
 set imap_keepalive = 300
 #set signature = "~/.config/neomutt/signature"
 
-set folder = "imaps://imap.gmail.com:993"
 set spoolfile = "+INBOX"
-set postponed = "+[Gmail]/Drafts"
 unset record
-set record = "+[Gmail]/Sent Mail"
-set trash = "+[Gmail]/Trash"
-mailboxes = "+INBOX" "+[Gmail]/Sent Mail" "+[Gmail]/Drafts" "+[Gmail]/Spam" "+[Gmail]/Trash"
+set record = "+Sent"
+set trash = "+Trash"
+set postponed = "+Drafts"
+
+mailboxes =INBOX =Sent =Trash =Drafts =Spam =Templates
 
 set editor = `echo \$EDITOR`
 set fast_reply = yes
@@ -55,9 +57,35 @@ auto_view application/pgp-encrypted
 
 bind generic,alias,attach,browser,editor,index,compose,pager,pgp,postpone ':' noop
 
+set crypt_use_gpgme=yes
+set crypt_autosign=yes
+set crypt_verify_sig=yes
+set crypt_replysign=yes
+set crypt_replyencrypt=yes
+set crypt_replysignencrypted=yes
+set crypt_autoencrypt = no
+
+#set pgp_default_key="32CBB6B5721D68FC021B073961170FEF5AC8C30F"
+set pgp_check_gpg_decrypt_status_fd
+set pgp_use_gpg_agent = yes
+set pgp_self_encrypt = yes
+set postpone_encrypt = yes
+
+set crypt_use_pka = no
+set pgp_sign_as	= "${my_email}"
+set pgp_sign_as=0x61170FEF5AC8C30F
+set crypt_autopgp = yes
+set pgp_verify_sig = yes
+
 ## Abook
-set query_command= "abook --mutt-query '%s'"
-macro index,pager  a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
+#set query_command= "abook --mutt-query '%s'"
+#macro index,pager  a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
+#
+
+set alias_file = "~/.config/neomutt/aliases"
+set sort_alias = alias
+set reverse_alias = yes
+source $alias_file
 
 bind editor <Tab> complete-query
 bind editor ^T complete
@@ -92,3 +120,5 @@ bind index,pager \Co sidebar-open
 
 set date_format="%d/%m/%Y %T"
 set new_mail_command = "new_mail %n"
+
+macro compose y "<attach-key>`echo 32CBB6B5721D68FC021B073961170FEF5AC8C30F`<enter><enter><send-message>"
