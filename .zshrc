@@ -117,9 +117,9 @@ esac
 abbrev-alias pac='sudo pacman'
 abbrev-alias cmatrix='cmatrix -C cyan -s'
 abbrev-alias meteo='curl "https://wttr.in/Frankfurt?qFm"'
-abbrev-alias news='newsboat -q 2>/dev/null'
+abbrev-alias news='torsocks newsboat -q 2>/dev/null'
 abbrev-alias ip_addres='wget -qO- http://ipecho.net/plain && echo'
-abbrev-alias youtube-music='youtube-dl --extract-audio --audio-format mp3'
+abbrev-alias youtube-music='torsocks youtube-dl --extract-audio --audio-format mp3'
 abbrev-alias PP='pipes2-slim'
 
 
@@ -200,7 +200,7 @@ show_date ()
 cheat ()
 {
     if [ -n "$1" ] ; then
-        curl https://cheat.sh/$1
+        torsocks curl https://cheat.sh/$1
     else
         echo "Usage: cheat "
     fi
@@ -210,9 +210,9 @@ cheat ()
 corona ()
 {
     if [ -n "$1" ] ; then
-        curl "https://corona-stats.online/$1"
+        torsocks curl "https://corona-stats.online/$1"
     else
-        curl "https://corona-stats.online?top=25"
+        torsocks curl "https://corona-stats.online?top=25"
     fi
 }
 
