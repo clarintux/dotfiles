@@ -17,7 +17,7 @@ export LANG='it_IT.UTF-8'
 export VISUAL=vim
 export EDITOR=vim
 export SUDO_EDITOR=vim
-#export MANPAGER='less -s -M +Gg'
+export MANPAGER='less -s -M +Gg'
 export TERMINAL=alacritty
 export BROWSER=iceweasel
 export READER=zathura
@@ -31,27 +31,27 @@ export QT_QPA_PLATFORMTHEME="gtk2"  # Have QT use gtk2 theme.
 export MOZ_USE_XINPUT2="1"  # Mozilla smooth scrolling/touchpads.
 export pacdiff_program="vimdiff" # for pacmatic
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-#export LESS=-R
-#export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
-#export LESS_TERMCAP_md=$'\e[1;33m'     # begin blink
-#export LESS_TERMCAP_so=$'\e[01;44;37m' # begin reverse video
-#export LESS_TERMCAP_us=$'\e[01;37m'    # begin underline
-#export LESS_TERMCAP_me=$'\e[0m'        # reset bold/blink
-#export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
-#export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
-#export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 export LESS=-R
-export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
-export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
-export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
-export LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video
-export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
-export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
-export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
+export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
+export LESS_TERMCAP_md=$'\e[1;33m'     # begin blink
+export LESS_TERMCAP_so=$'\e[01;44;37m' # begin reverse video
+export LESS_TERMCAP_us=$'\e[01;37m'    # begin underline
+export LESS_TERMCAP_me=$'\e[0m'        # reset bold/blink
+export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
+export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
+export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
+#export LESS=-R
+#export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
+#export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
+#export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
+#export LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video
+#export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
+#export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
+#export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
 # MPD daemon start (if no other user instance exists)
-[ ! -s ~/.config/mpd/pid ] && mpd &> /dev/null
-#[ ! -s ~/.config/mpd/pid ] && mpd
+#[ ! -s ~/.config/mpd/pid ] && mpd &> /dev/null
+pgrep -x mpd > /dev/null || mpd &> /dev/null
 
 # Start graphical server if not already running.
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
