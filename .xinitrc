@@ -13,7 +13,7 @@
 # Keyboard layout
 #setxkbmap de &
 
-#xinput set-prop 10 "libinput Tapping Enabled" 1
+#xinput set-prop 10 "libinput Tapping Enabled" 1 &
 
 # Compositor
 #picom -b -c -f &
