@@ -1,5 +1,5 @@
-#browser "w3m %u 2>/dev/null && rm ~/.w3m/cookie"
-browser $BROWSER
+browser "torsocks w3m %u 2>/dev/null && rm ~/.w3m/cookie"
+#browser $BROWSER
 pager internal
 article-sort-order date-asc
 datetime-format "%d/%m/%Y"
@@ -16,7 +16,7 @@ reload-time 20
 reload-threads 100
 
 #macro w set browser "mpv --script-opts=ytdl_hook-ytdl_path=yt-dlp %u &> /dev/null &" ; open-in-browser ; set browser "w3m %u 2>/dev/null && rm ~/.w3m/cookie"
-macro w set browser "mpv --script-opts=ytdl_hook-ytdl_path=yt-dlp %u &> /dev/null &" ; open-in-browser ; set browser $BROWSER
+macro w set browser "torsocks mpv --script-opts=ytdl_hook-ytdl_path=yt-dlp %u &> /dev/null &" ; open-in-browser ; set browser $BROWSER
 
 # bind keys
 bind-key G end
