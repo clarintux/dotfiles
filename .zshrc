@@ -1,5 +1,5 @@
 # If not running interactively, don't do anything
-[[ $- != *i* ]] && return 
+[[ $- != *i* ]] && return
 
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
@@ -90,6 +90,7 @@ zle -N accept-line expand-alias-and-accept-line
 
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME' # bar repo
 alias open='xdg-open "$(fzf)"'
+alias vi='vim'
 abbrev-alias ..='cd ..'
 abbrev-alias ls='exa -G --color auto'
 abbrev-alias ll='exa -l -a -G --color always'
@@ -187,15 +188,6 @@ countdown ()
     fi
 }
 
-### SHOW DATE
-show_date ()
-{
-    while true
-        do
-            printf '%s\r' "$(date)"
-        done
-}
-
 ### cheat
 cheat ()
 {
@@ -203,16 +195,6 @@ cheat ()
         torsocks curl https://cheat.sh/$1
     else
         echo "Usage: cheat "
-    fi
-}
-
-### corona
-corona ()
-{
-    if [ -n "$1" ] ; then
-        torsocks curl "https://corona-stats.online/$1"
-    else
-        torsocks curl "https://corona-stats.online?top=25"
     fi
 }
 
