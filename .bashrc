@@ -8,7 +8,6 @@
 PS1="\[\033[01;33m\]\u\[\033[01;36m\]@\[\033[01;31m\]\h\[\033[00m\]\[\033[01;34m\]\w\[\033[00m\]\$ "
 
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
-PATH=$HOME/.local/bin:$PATH
 
 if [ -n "$RANGER_LEVEL" ]; then export PS1="\[\033[01;36m\][ranger] $PS1"; fi
 
@@ -44,6 +43,7 @@ alias rm='rm -Iv'
 alias cat='bat --italic-text=always --color=auto --theme=gruvbox-dark -Pp'
 alias less='bat --italic-text=always --color=auto --theme=gruvbox-dark -n'
 alias SS='sudo systemctl'
+alias vi='vim'
 
 distro=$(grep -e "^ID=" /etc/os-release | cut -d '=' -f2)
 case $distro in
@@ -75,7 +75,7 @@ ranger() {
 }
 
 ### ARCHIVE EXTRACTION
-# usage: ex 
+# usage: ex
 ex ()
 {
   if [ -f $1 ] ; then
@@ -129,15 +129,6 @@ countdown ()
     fi
 }
 
-### SHOW DATE
-show_date ()
-{
-    while true
-        do
-            printf '%s\r' "$(date)"
-        done
-}
-
 ### cheat
 cheat ()
 {
@@ -145,16 +136,6 @@ cheat ()
         torsocks curl https://cheat.sh/$1
     else
         echo "Usage: cheat "
-    fi
-}
-
-### corona
-corona ()
-{
-    if [ -n "$1" ] ; then
-        torsocks curl https://corona-stats.online/$1
-    else
-        torsocks curl https://corona-stats.online?top=25
     fi
 }
 
