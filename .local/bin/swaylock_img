@@ -1,0 +1,5 @@
+#!/bin/sh
+
+image="$(grep "file" $HOME/.config/nitrogen/bg-saved.cfg | sed 's/file=//g')"
+
+swaylock -s fill -i $image

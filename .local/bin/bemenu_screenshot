@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ -f $HOME/.config/bemenurc ]; then
+  . $HOME/.config/bemenurc
+else
+  BEMENU='bemenu -i'
+fi
+
+choice=$(echo -e "Fullscreen\nPortion\nDelay 5s" | $BEMENU)
+
+case "$choice" in
+  Fullscreen) grim $HOME/Immagini/"screenshot-$(date '+%y%m%d-%H%M-%S).png')" && notify-send --icon=camera-photo "Schermata salvata in Immagini" && mpv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga ;;
+  Portion) grim -g "$(slurp)" $HOME/Immagini/screenshot-"$(date '+%y%m%d-%H%M-%S).png')" && notify-send --icon=camera-photo "Schermata salvata in Immagini" && mpv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga ;;
+  Delay\ 5s) sleep 5 && grim $HOME/Immagini/"screenshot-$(date '+%y%m%d-%H%M-%S).png')" && notify-send --icon=camera-photo "Schermata salvata in Immagini" && mpv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga ;;
+esac

@@ -1,0 +1,22 @@
+#!/bin/sh
+
+if [ -f $HOME/.config/bemenurc ]; then
+  . $HOME/.config/bemenurc
+else
+  BEMENU='bemenu -i'
+fi
+
+select=$(echo -e "Start recording\nStop recording" | $BEMENU -p "Select:")
+
+[[ -z "$select" ]] && exit
+
+if [ "$select" = "Start recording" ]; then
+    notify-send --icon=camera-video "Start recording desktop"
+    wf-recorder --audio --file="$HOME/Video/screencasts/screencast-$(date '+%y%m%d-%H%M-%S').mp4" > /dev/null
+elif [ "$select" = "Stop recording" ]; then
+    killall -INT wf-recorder
+    notify-send --icon=camera-video "Stop recording desktop"
+else
+    echo "Usage: record_desktop <start|stop>" | $BEMENU -p Error:
+fi
+

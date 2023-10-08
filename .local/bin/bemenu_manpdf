@@ -1,0 +1,13 @@
+#! /bin/sh
+
+if [ -f $HOME/.config/bemenurc ]; then
+   . $HOME/.config/bemenurc
+else
+   BEMENU='bemenu -i'         
+fi
+
+
+man=$(man -k . | cut -d " " -f1 | $BEMENU -p "Pick a manual to read:")
+
+[ -z "$man" ] && exit 1
+man -Tpdf "$man" | "${READER:="$(which zathura)"}" -

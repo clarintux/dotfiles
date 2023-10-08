@@ -1,0 +1,3 @@
+#!/bin/sh
+
+hyprctl --batch "keyword general:gaps_in $(($(hyprctl getoption general:gaps_in | \grep --color=auto "int" | cut -d ":" -f2) + 5)) ; keyword general:gaps_out $(($(hyprctl getoption general:gaps_in | \grep --color=auto "int" | cut -d ":" -f2) + 5))"

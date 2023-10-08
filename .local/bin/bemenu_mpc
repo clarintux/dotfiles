@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [ -f $HOME/.config/bemenurc ]; then
+  . $HOME/.config/bemenurc
+else
+  BEMENU='bemenu -i'
+fi
+
+SELECT=$(mpc playlist --format '%position% %title% by %artist%' | $BEMENU -l 10 -p Play: | awk '{print $1}')
+
+[[ ! $SELECT ]] && exit
+
+mpc play "$SELECT"
+notify-send --icon=audio-x-generic "Now Playing" "$(mpc --format '%title% \n%artist% - %album%' current)"

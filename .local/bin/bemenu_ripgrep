@@ -1,0 +1,30 @@
+#!/bin/sh
+
+if [ -f $HOME/.config/bemenurc ]; then
+  . $HOME/.config/bemenurc
+else
+  BEMENU='bemenu -i'
+fi
+
+choice1=$(echo -e "File\nWord" | $BEMENU -p Search:)
+[[ -z "$choice1" ]] && exit
+
+search=$(echo | $BEMENU -p Search:)
+
+[[ -z "$search" ]] && exit
+
+if [ "$choice1" = "File" ]; then
+    choice2=$(locate "$search" | $BEMENU -l 10 -p "Select file:")
+else
+    choice2=$(rg --hidden "$search" $HOME | awk -F':' '{print $1}' | $BEMENU -l 10 -p "Select file:")
+fi
+
+[[ -z "$choice2" ]] && exit
+
+filetype=$(xdg-mime query filetype $choice2)
+
+if [ "$filetype" = "text/plain" ]; then
+    $TERMINAL -e $EDITOR $choice2
+else
+    xdg-open $choice2
+fi

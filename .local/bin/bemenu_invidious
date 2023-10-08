@@ -1,9 +1,9 @@
 #!/bin/sh 
 
-if [ -f $HOME/.config/dmenurc ]; then
-  . $HOME/.config/dmenurc
+if [ -f $HOME/.config/bemenurc ]; then
+  . $HOME/.config/bemenurc
 else
-  DMENU='dmenu -i'
+  BEMENU='bemenu -i'
 fi
 
 channelsyt="Search Video
@@ -30,12 +30,12 @@ Club Pirata ; https://invidious.snopyta.org/channel/UCcfaRcXOjy8DLD9BEixZZkQ"
 
 url_vid="https://invidious.snopyta.org"
 
-channelname=$(echo "$channelsyt" | $DMENU -l 10 -p "YouTube Channels":)
+channelname=$(echo "$channelsyt" | $BEMENU -l 10 -p "YouTube Channels":)
 
 [[ ! $channelname ]] && exit
 
 if [ "$channelname" == 'Search Video' ]; then
-    $HOME/.local/bin/dmenu_ytsearch
+    $HOME/.local/bin/bemenu_ytsearch
     exit
 fi
 
@@ -45,7 +45,7 @@ output="$(torsocks wget -qO- "$urlchannel")"
 
 result="$(echo "$output" | grep -E "youtube.com/watch|p dir" | sed ':a;N;$!ba;s/<\/p><\/a>\n//g' | sed 's/.*auto">//g;s/<a title=.*href="//g;s/">//g;s/www.youtube.com/invidious.snopyta.org/g')"
 
-select="$(echo "$result" | $DMENU -l 20 -p Videos:)"
+select="$(echo "$result" | $BEMENU -l 20 -p Videos:)"
 
 [[ ! $select ]] && exit
 

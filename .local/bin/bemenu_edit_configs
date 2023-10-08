@@ -1,12 +1,12 @@
 #!/bin/sh
 
-if [ -f $HOME/.config/dmenurc ]; then
-  . $HOME/.config/dmenurc
+if [ -f $HOME/.config/bemenurc ]; then
+  . $HOME/.config/bemenurc
 else
-  DMENU='dmenu -i'
+  BEMENU='bemenu -i'
 fi
 
-choice=$(echo -e "bash\nprofile\nzsh\nzprofile\nxinitrc\nvim\nalacritty\nbspwm\nsxhkd\nmpd\nncmpcpp\ndunst\nhyprland\nwaybar\nnewsboat" | $DMENU -p Edit/Open:)
+choice=$(echo -e "bash\nprofile\nzsh\nzprofile\nxinitrc\nvim\nalacritty\nbspwm\nsxhkd\nmpd\nncmpcpp\ndunst\nhyprland\nwaybar\nnewsboat" | $BEMENU -p Edit/Open:)
 
 [[ ! $choice ]] && exit
 

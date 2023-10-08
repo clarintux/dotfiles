@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ -f $HOME/.config/bemenurc ]; then
+  . $HOME/.config/bemenurc
+else
+  BEMENU='bemenu -i'
+fi
+
+echo "$BEMENU"
+
+echo "" | $BEMENU -p Calculate: | xargs -r echo | bc 2>&1 | $BEMENU -p Answer:

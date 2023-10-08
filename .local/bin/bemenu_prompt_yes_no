@@ -1,0 +1,13 @@
+#!/bin/sh
+# Opens a basic yes/no prompt with bemenu
+# This is useful for confirming whether an action should be taken
+
+if [ -f $HOME/.config/bemenurc ]; then
+  . $HOME/.config/bemenurc
+else
+  BEMENU='bemenu -i'
+fi
+
+if [ "$(printf "No\nYes" | $BEMENU -p "$1")" = "Yes" ]; then
+   $2
+fi

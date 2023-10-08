@@ -1,4 +1,4 @@
 #!/bin/sh
 
 cd "$HOME"/.local/bin/tor-browser
-./start-tor-browser.desktop
+GTK_THEME="Klaus" ./start-tor-browser.desktop
