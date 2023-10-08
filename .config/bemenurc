@@ -1,0 +1,1 @@
+BEMENU='bemenu --hp 10 -B 4 -R 10 -M 10 --bdr #000000 --tb #282828 --tf #ebdbb2 --hb #d79921 --hf #000000 --fb #282828 --ff #d79921'
