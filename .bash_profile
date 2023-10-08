@@ -17,7 +17,7 @@ export LANG='it_IT.UTF-8'
 export VISUAL=vim
 export EDITOR=vim
 export SUDO_EDITOR=vim
-#export MANPAGER='less -s -M +Gg'
+export MANPAGER='less -s -M +Gg'
 export TERMINAL=alacritty
 export BROWSER=iceweasel
 export READER=zathura
@@ -25,7 +25,8 @@ export VIDEO=mpv
 export IMAGE=sxiv
 export FILE=ranger
 export FILE_VISUAL=thunar
-export WM=bspwm
+#export WM=bspwm
+export WM=hyprland
 export STARDICT_DATA_DIR="$HOME/.local/share"
 export QT_QPA_PLATFORMTHEME="gtk2"  # Have QT use gtk2 theme.
 export MOZ_USE_XINPUT2="1"  # Mozilla smooth scrolling/touchpads.
@@ -47,5 +48,6 @@ pgrep -x mpd > /dev/null || mpd &> /dev/null
 
 # Start graphical server if not already running.
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-  exec startx -- vt1 &> /dev/null
+  #exec startx -- vt1 &> /dev/null # Xorg
+  dbus-run-session Hyprland &> /dev/null # Wayland
 fi
