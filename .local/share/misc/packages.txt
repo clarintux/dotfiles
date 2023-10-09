@@ -1023,8 +1023,6 @@ xterm
 xvidcore
 xz
 yajl
-your-freedom
-youtube-dl
 yt-dlp
 zathura
 zathura-pdf-mupdf
