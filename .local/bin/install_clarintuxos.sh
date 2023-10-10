@@ -90,8 +90,8 @@ echo "Inserisci il codice del layout della tastiera."
 echo "Esempio: it per italiano, us per inglese,"
 echo "de per tedesco, eccetera."
 read -p "Codice: " code
-sed -i "s/kb_layout = de/kb_layout = $code" ~/.config/hypr/hyprland.conf
-sed -i "s/setxkbmap de/setxkbmap $code" ~/.config/bspwm/bspwmrc ~/.config/openbox/autostart
+sed -i "s/kb_layout = de/kb_layout = $code/g" ~/.config/hypr/hyprland.conf
+sed -i "s/setxkbmap de/setxkbmap $code/g" ~/.config/bspwm/bspwmrc ~/.config/openbox/autostart
 
 echo
 echo "Vuoi usare zsh come shell predefinita"
