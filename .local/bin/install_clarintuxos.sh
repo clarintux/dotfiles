@@ -116,10 +116,10 @@ case "$choice" in
     1) sed -i 's/.*#dbus-run-session Hyprland/    dbus-run-session Hyprland/g;s/.*exec startx/    #exec startx/g' ~/.bash_profile ~/.zprofile;;
     2) sed -i 's/^#exec bspwm/exec bspwm/g;s/^exec openbox-session/#exec openbox-session/g' ~/.xinitrc;
         sed -i 's/.*dbus-run-session Hyprland/    #dbus-run-session Hyprland/g;s/.*#exec startx/    exec startx/g' ~/.bash_profile ~/.zprofile;
-        ln -s ~/.config/tint2/tint2rc_bspwm ~/.config/tint2/tint2rc;;
+        ln -sf ~/.config/tint2/tint2rc_bspwm ~/.config/tint2/tint2rc;;
     3) sed -i 's/^#exec openbox-session/exec openbox-session/g;s/^exec bspwm/#exec bspwm/g' ~/.xinitrc;
         sed -i 's/.*dbus-run-session Hyprland/    #dbus-run-session Hyprland/g;s/.*#exec startx/    exec startx/g' ~/.bash_profile ~/.zprofile;
-        ln -s ~/.config/tint2/tint2rc_openbox ~/.config/tint2/tint2rc;;
+        ln -sf ~/.config/tint2/tint2rc_openbox ~/.config/tint2/tint2rc;;
 esac
 
 echo
