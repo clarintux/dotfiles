@@ -547,9 +547,6 @@ libyaml
 libyuv
 libzmf
 licenses
-linux-libre
-linux-libre-api-headers
-linux-libre-lts
 llvm-libs
 lm_sensors
 lmdb
@@ -645,7 +642,6 @@ pam
 pambase
 pango
 pangomm
-parabola-keyring
 parted
 pavucontrol
 pciutils
