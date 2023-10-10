@@ -561,6 +561,8 @@ luajit
 luit
 lvm2
 lxappearance-gtk3
+lxinput
+lxrandr
 lxsession
 lz4
 lzo
@@ -573,6 +575,7 @@ mbedtls
 md4c
 mdadm
 media-player-info
+menumaker
 mesa
 mkinitcpio
 mkinitcpio-busybox
@@ -614,11 +617,13 @@ nss
 nss-mdns
 ntfs-3g
 numactl
+obconf
 obs-studio
 ocl-icd
 onevpl
 oniguruma
 openal
+openbox
 opencore-amr
 openexr
 openjpeg2
@@ -920,6 +925,7 @@ tslib
 ttf-bitstream-vera
 ttf-dejavu
 ttf-font-awesome
+ttf-liberation
 ttf-nerd-fonts-symbols
 ttf-nerd-fonts-symbols-common
 ttf-noto-nerd
