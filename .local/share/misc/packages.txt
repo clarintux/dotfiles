@@ -67,7 +67,6 @@ cpio
 cppdap
 cryptsetup
 cups
-cups-drivers
 cups-filters
 cups-pdf
 cups-pk-helper
@@ -115,7 +114,6 @@ filesystem
 findutils
 firejail
 flac
-flashrom-stable
 fluidsynth
 fmt
 fontconfig
@@ -624,7 +622,6 @@ openmpi
 openpmix
 openssh
 openssl
-openssl-1.0
 openssl-1.1
 opus
 orc
@@ -933,7 +930,6 @@ vid.stab
 vim
 vim-airline
 vim-airline-themes
-vim-colorschemes
 vim-runtime
 vim-spell-de
 vim-spell-en
