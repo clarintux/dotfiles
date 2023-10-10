@@ -1,9 +1,0 @@
-#!/bin/sh
-
-if [ -f $HOME/.config/dmenurc ]; then
-  . $HOME/.config/dmenurc
-else
-  DMENU='dmenu -i'
-fi
-
-cat $HOME/.local/share/misc/shortcuts | $DMENU -l 20 -p "Shortcuts:"
