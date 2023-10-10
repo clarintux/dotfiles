@@ -13,7 +13,6 @@ apparmor
 appstream
 arc-gtk-theme
 arc-icon-theme
-archlinux-keyring
 argon2
 at-spi2-core
 atkmm
@@ -221,9 +220,6 @@ hyphen
 hyprland
 i3lock
 iana-etc
-iceweasel
-iceweasel-https-everywhere
-iceweasel-noscript
 icu
 ijs
 imath
@@ -892,17 +888,6 @@ sxhkd
 sxiv
 syndication5
 system-config-printer
-systemd
-systemd-common
-systemd-libs
-systemd-libsystemd
-systemd-libudev
-systemd-nss-myhostname
-systemd-nss-mymachines
-systemd-nss-resolve
-systemd-nss-systemd
-systemd-sysvcompat
-systemd-udev
 taglib
 talloc
 tar
