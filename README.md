@@ -27,8 +27,10 @@ https://www.youtube.com/channel/UCTguDCZ1oXwijhEtkaycccA
 --------------------------------
 To install my setup:
 ```
-sudo pacman -S curl
-curl https://raw.githubusercontent.com/clarintux/dotfiles/master/.local/bin/install_clarintuxos.sh | sh
+sudo pacman -S wget
+wget https://raw.githubusercontent.com/clarintux/dotfiles/master/.local/bin/install_clarintuxos.sh
+chmod +x install_clarintuxos.sh
+./install_clarintuxos.sh
 ```
 (For me...) To push:
 ```
