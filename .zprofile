@@ -48,6 +48,6 @@ pgrep -x mpd > /dev/null || mpd &> /dev/null
 
 # Start graphical server if not already running.
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-  #exec startx -- vt1 &> /dev/null # Xorg
-  dbus-run-session Hyprland &> /dev/null # Wayland
+  exec startx -- vt1 &> /dev/null # Xorg
+  #dbus-run-session Hyprland &> /dev/null # Wayland
 fi
