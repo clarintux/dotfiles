@@ -11,7 +11,7 @@ pgrep -x nm-applet > /dev/null || nm-applet &
 pgrep -x volumeicon > /dev/null || volumeicon &
 pgrep -x dunst > /dev/null || dunst &
 
-bspc monitor -d          
+bspc monitor -d          
 
 # for other monitors find out names with arandr or xrandr, then:
 #bspc monitor LVDS1 -d 1 2 3 4 ....
