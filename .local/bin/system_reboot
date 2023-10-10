@@ -14,5 +14,5 @@ case "$SELECT" in
     Poweroff) systemctl poweroff ;;
     Reboot) systemctl reboot ;;
     Suspend) systemctl suspend ;;
-    Exit) bspc quit ;;
+    Exit) bspc quit || openbox --exit;;
 esac
