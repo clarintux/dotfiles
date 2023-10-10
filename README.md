@@ -27,10 +27,8 @@ https://www.youtube.com/channel/UCTguDCZ1oXwijhEtkaycccA
 --------------------------------
 To install my setup:
 ```
-sudo pacman -S curl git
-curl https://raw.githubusercontent.com/clarintux/dotfiles/master/.local/bin/install_dotfiles.sh | sh
-sudo pacman -S --needed - < $HOME/.local/share/misc/packages.txt
-git clone https://github.com/clarintux/wallpapers.git $HOME/Immagini/wallpapers
+sudo pacman -S curl
+curl https://raw.githubusercontent.com/clarintux/dotfiles/master/.local/bin/install_clarintuxos.sh | sh
 ```
 (For me...) To push:
 ```
