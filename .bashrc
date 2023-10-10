@@ -75,7 +75,7 @@ ranger() {
 }
 
 ### ARCHIVE EXTRACTION
-# usage: ex
+# usage: ex 
 ex ()
 {
   if [ -f $1 ] ; then
