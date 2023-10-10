@@ -42,7 +42,7 @@
                   'Active' - where the active window is -->
   </placement>
   <theme>
-    <name>Gruvbox-Gtk</name>
+    <name>Klaus</name>
     <titleLayout>NLIMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -207,55 +207,55 @@
         <wrap>no</wrap>
       </action>
     </keybind>
-    <keybind key="S-A-Left">
+    <keybind key="S-C-A-Left">
       <action name="SendToDesktop">
         <to>left</to>
         <wrap>no</wrap>
       </action>
     </keybind>
-    <keybind key="S-A-Right">
+    <keybind key="S-C-A-Right">
       <action name="SendToDesktop">
         <to>right</to>
         <wrap>no</wrap>
       </action>
     </keybind>
-    <keybind key="S-A-Up">
+    <keybind key="S-C-A-Up">
       <action name="SendToDesktop">
         <to>up</to>
         <wrap>no</wrap>
       </action>
     </keybind>
-    <keybind key="S-A-Down">
+    <keybind key="S-C-A-Down">
       <action name="SendToDesktop">
         <to>down</to>
         <wrap>no</wrap>
       </action>
     </keybind>
-    <keybind key="W-F1">
+    <keybind key="W-1">
       <action name="GoToDesktop">
         <to>1</to>
       </action>
     </keybind>
-    <keybind key="W-F2">
+    <keybind key="W-2">
       <action name="GoToDesktop">
         <to>2</to>
       </action>
     </keybind>
-    <keybind key="W-F3">
+    <keybind key="W-3">
       <action name="GoToDesktop">
         <to>3</to>
       </action>
     </keybind>
-    <keybind key="W-F4">
+    <keybind key="W-4">
       <action name="GoToDesktop">
         <to>4</to>
       </action>
     </keybind>
-    <keybind key="W-d">
+    <keybind key="C-A-d">
       <action name="ToggleShowDesktop"/>
     </keybind>
     <!-- Keybindings for windows -->
-    <keybind key="A-F4">
+    <keybind key="W-q">
       <action name="Close"/>
     </keybind>
     <keybind key="W-f">
@@ -316,6 +316,24 @@
         </finalactions>
       </action>
     </keybind>
+    <keybind key="W-Tab">
+      <action name="NextWindow">
+        <finalactions>
+          <action name="Focus"/>
+          <action name="Raise"/>
+          <action name="Unshade"/>
+        </finalactions>
+      </action>
+    </keybind>
+    <keybind key="W-S-Tab">
+      <action name="PreviousWindow">
+        <finalactions>
+          <action name="Focus"/>
+          <action name="Raise"/>
+          <action name="Unshade"/>
+        </finalactions>
+      </action>
+    </keybind>
     <keybind key="C-A-Tab">
       <action name="NextWindow">
         <panels>yes</panels>
@@ -350,54 +368,140 @@
     </keybind>
     <!-- Keybindings to control mpd -->
     <keybind key="XF86AudioStop">
-        <action name="Execute">
-            <command>mpc stop</command>
-        </action>
+      <action name="Execute">
+        <command>mpc stop</command>
+      </action>
     </keybind>
     <keybind key="XF86AudioPlay">
-        <action name="Execute">
-            <command>/usr/bin/mpc_toggle</command>
-        </action>
+      <action name="Execute">
+        <command>mpc toggle</command>
+      </action>
     </keybind>
     <keybind key="XF86AudioPrev">
-        <action name="Execute">
-            <command>/usr/bin/mpc prev</command>
-        </action>
+      <action name="Execute">
+        <command>mpc prev</command>
+      </action>
     </keybind>
     <keybind key="XF86AudioNext">
-        <action name="Execute">
-            <command>/usr/bin/mpc next</command>
-        </action>
+      <action name="Execute">
+        <command>mpc next</command>
+      </action>
     </keybind>
     <!-- Keybindings for running applications -->
+    <keybind key="C-m">
+        <action name="ShowMenu">
+            <menu>root-menu</menu>
+        </action>
+    </keybind>
     <keybind key="W-e">
       <action name="Execute">
         <startupnotify>
           <enabled>true</enabled>
-          <name>icedove</name>
+          <name>edit configs</name>
         </startupnotify>
-        <command>/usr/bin/icedove</command>
+        <command>~/.local/bin/dmenu_edit_configs</command>
+      </action>
+    </keybind>
+    <keybind key="W-c">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>true</enabled>
+          <name>dmenu_calc</name>
+        </startupnotify>
+        <command>~/.local/bin/dmenu_calc</command>
+      </action>
+    </keybind>
+    <keybind key="W-m">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>true</enabled>
+          <name>dmenu_mpc</name>
+        </startupnotify>
+        <command>~/.local/bin/dmenu_mpc</command>
+      </action>
+    </keybind>
+    <keybind key="W-y">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>true</enabled>
+          <name>dmenu_invidious</name>
+        </startupnotify>
+        <command>~/.local/bin/dmenu_invidious</command>
+      </action>
+    </keybind>
+    <keybind key="W-r">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>true</enabled>
+          <name>record desktop</name>
+        </startupnotify>
+        <command>~/.local/bin/record_desktop</command>
+      </action>
+    </keybind>
+    <keybind key="W-S-f">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>true</enabled>
+          <name>dmenu ripgrep</name>
+        </startupnotify>
+        <command>~/.local/bin/dmenu_ripgrep</command>
+      </action>
+    </keybind>
+    <keybind key="W-v">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>true</enabled>
+          <name>webcam</name>
+        </startupnotify>
+        <command>mpv --profile=low-latency --untimed /dev/video0 --geometry=290x217+1064+39</command>
+      </action>
+    </keybind>
+    <keybind key="W-w">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>true</enabled>
+          <name>change wallpaper</name>
+        </startupnotify>
+        <command>~/.local/bin/change_wal</command>
+      </action>
+    </keybind>
+    <keybind key="W-Escape">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>true</enabled>
+          <name>reboot poweroff exit</name>
+        </startupnotify>
+        <command>~/.local/bin/system_reboot</command>
       </action>
     </keybind>
     <keybind key="W-b">
       <action name="Execute">
         <startupnotify>
           <enabled>true</enabled>
-          <name>icecat</name>
+          <name>start_tor_browser</name>
         </startupnotify>
-        <command>icecat</command>
+        <command>~/.local/bin/start_tor_browser</command>
+      </action>
+    </keybind>
+    <keybind key="W-d">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>true</enabled>
+          <name>traduzioni</name>
+        </startupnotify>
+        <command>~/.local/bin/dmenu_stardict</command>
       </action>
     </keybind>
     <keybind key="W-Return">
       <action name="Execute">
         <startupnotify>
           <enabled>true</enabled>
-          <name>alacritty</name>
+          <name>terminal</name>
         </startupnotify>
         <command>/usr/bin/alacritty</command>
       </action>
     </keybind>
-    <keybind key="W-t">
+    <keybind key="W-n">
       <action name="Execute">
         <startupnotify>
           <enabled>true</enabled>
@@ -406,13 +510,22 @@
         <command>/usr/bin/thunar</command>
       </action>
     </keybind>
+    <keybind key="W-S-n">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>true</enabled>
+          <name>dmenu_filemanager</name>
+        </startupnotify>
+        <command>~/.local/bin/dmenu_filemanager</command>
+      </action>
+    </keybind>
     <keybind key="W-space">
       <action name="Execute">
         <startupnotify>
           <enabled>true</enabled>
-          <name>rofi</name>
+          <name>dmenu_run</name>
         </startupnotify>
-        <command>/usr/bin/rofi -modi "drun,run,window" -show drun</command>
+        <command>dmenu_run -i -p "run:" -m dmenumon -fn "Font Awesome 5 Free Heavy:size=12" -nb "#282828" -nf "#EBDBB2" -sb "#d79921" -sf "#000000"</command>
       </action>
     </keybind>
     <keybind key="C-A-l">
@@ -421,16 +534,16 @@
           <enabled>true</enabled>
           <name>lock</name>
         </startupnotify>
-        <command>/usr/bin/xscreensaver-command --lock</command>
+        <command>~/.local/bin/i3lock_image</command>
       </action>
     </keybind>
     <keybind key="Print">
       <action name="Execute">
         <startupnotify>
           <enabled>true</enabled>
-          <name>xfce4-screenshoter</name>
+          <name>dmenu_screenshot</name>
         </startupnotify>
-        <command>/usr/bin/xfce4-screenshooter</command>
+        <command>~/.local/bin/dmenu_screenshot</command>
       </action>
     </keybind>
     <keybind key="C-A-m">

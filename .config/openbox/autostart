@@ -24,4 +24,6 @@ nm-applet &
 volumeicon &
 #/usr/lib/notification-daemon-1.0/notification-daemon &
 dunst &
+setxkbmap de &
+xrdb -merge -I$HOME ~/.Xresources &
 #xscreensaver -no-splash &

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openbox_menu>
+    <menu id="root-menu" label="OpenBox 3">
+        <menu id="2" label="Editors">
+            <item label="Mousepad"> <action name="Execute">
+                <execute>mousepad</execute>
+            </action> </item>
+        </menu>
+        <menu id="18" label="Games">
+            <menu id="9" label="Adventure">
+            </menu>
+            <menu id="10" label="Arcade">
+            </menu>
+            <menu id="12" label="Card">
+                <item label="AisleRiot Solitaire"> <action name="Execute">
+                    <execute>sol</execute>
+                </action> </item>
+                <item label="Gnome FreeCell"> <action name="Execute">
+                    <execute>sol --variation freecell</execute>
+                </action> </item>
+            </menu>
+            <menu id="13" label="Puzzle">
+                <item label="Four-in-a-row"> <action name="Execute">
+                    <execute>four-in-a-row</execute>
+                </action> </item>
+                <item label="Mines"> <action name="Execute">
+                    <execute>gnome-mines</execute>
+                </action> </item>
+                <item label="Quadrapassel"> <action name="Execute">
+                    <execute>quadrapassel</execute>
+                </action> </item>
+            </menu>
+        </menu>
+        <menu id="6" label="Graphics">
+            <item label="Document Scanner"> <action name="Execute">
+                <execute>simple-scan</execute>
+            </action> </item>
+            <item label="LibreOffice Draw"> <action name="Execute">
+                <execute>libreoffice --draw</execute>
+            </action> </item>
+            <item label="The GIMP"> <action name="Execute">
+                <execute>gimp</execute>
+            </action> </item>
+        </menu>
+        <menu id="7" label="Multimedia">
+            <item label="mpv Media Player"> <action name="Execute">
+                <execute>mpv --player-operation-mode=pseudo-gui</execute>
+            </action> </item>
+            <item label="ncmpcpp"> <action name="Execute">
+                <execute>alacritty -e ncmpcpp</execute>
+            </action> </item>
+            <item label="OBS Studio"> <action name="Execute">
+                <execute>obs</execute>
+            </action> </item>
+            <item label="PulseAudio Volume Control"> <action name="Execute">
+                <execute>pavucontrol</execute>
+            </action> </item>
+            <item label="Shotcut"> <action name="Execute">
+                <execute>shotcut</execute>
+            </action> </item>
+        </menu>
+        <menu id="5" label="Network">
+            <item label="Dino"> <action name="Execute">
+                <execute>dino</execute>
+            </action> </item>
+            <item label="Iceweasel"> <action name="Execute">
+                <execute>/usr/lib/iceweasel/iceweasel</execute>
+            </action> </item>
+            <item label="Tor Browser"> <action name="Execute">
+                    <execute>~/.local/bin/start_tor_browser</execute>
+            </action> </item>
+        </menu>
+        <menu id="3" label="Office">
+            <item label="LibreOffice Calc"> <action name="Execute">
+                <execute>libreoffice --calc</execute>
+            </action> </item>
+            <item label="LibreOffice Impress"> <action name="Execute">
+                <execute>libreoffice</execute>
+            </action> </item>
+            <item label="LibreOffice Impress"> <action name="Execute">
+                <execute>libreoffice --impress</execute>
+            </action> </item>
+            <item label="LibreOffice Math"> <action name="Execute">
+                <execute>libreoffice --math</execute>
+            </action> </item>
+            <item label="LibreOffice Writer"> <action name="Execute">
+                <execute>libreoffice --writer</execute>
+            </action> </item>
+        </menu>
+        <menu id="19" label="Shells">
+            <item label="Alacritty"> <action name="Execute">
+                <execute>alacritty</execute>
+            </action> </item>
+            <item label="ranger"> <action name="Execute">
+                <execute>alacritty -e ranger</execute>
+            </action> </item>
+            <item label="Thunar File Manager"> <action name="Execute">
+                <execute>thunar</execute>
+            </action> </item>
+            <item label="Xterm"> <action name="Execute">
+                <execute>xterm</execute>
+            </action> </item>
+        </menu>
+        <menu id="37" label="System">
+            <menu id="36" label="Settings">
+                <menu id="21" label="GNOME">
+                    <item label="Advanced Network Configuration"> <action name="Execute">
+                        <execute>nm-connection-editor</execute>
+                    </action> </item>
+                </menu>
+                <item label="Customize Look and Feel"> <action name="Execute">
+                    <execute>lxappearance</execute>
+                </action> </item>
+                <item label="Default applications for LXSession"> <action name="Execute">
+                    <execute>lxsession-default-apps</execute>
+                </action> </item>
+                <item label="Desktop Session Settings"> <action name="Execute">
+                    <execute>lxsession-edit</execute>
+                </action> </item>
+                <item label="File Manager Settings"> <action name="Execute">
+                    <execute>thunar-settings</execute>
+                </action> </item>
+                <item label="Keyboard and Mouse"> <action name="Execute">
+                    <execute>lxinput</execute>
+                </action> </item>
+                <item label="Monitor Settings"> <action name="Execute">
+                    <execute>lxrandr</execute>
+                </action> </item>
+                <item label="nitrogen"> <action name="Execute">
+                    <execute>nitrogen</execute>
+                </action> </item>
+                <item label="Openbox Configuration Manager"> <action name="Execute">
+                    <execute>obconf</execute>
+                </action> </item>
+                <item label="Print Settings"> <action name="Execute">
+                    <execute>system-config-printer</execute>
+                </action> </item>
+                <item label="Removable Drives and Media"> <action name="Execute">
+                    <execute>thunar-volman-settings</execute>
+                </action> </item>
+                <item label="Session and Startup"> <action name="Execute">
+                    <execute>xfce4-session-settings</execute>
+                </action> </item>
+                <item label="Text Editor Settings"> <action name="Execute">
+                    <execute>mousepad --preferences</execute>
+                </action> </item>
+                <item label="Tint2 Settings"> <action name="Execute">
+                    <execute>tint2conf</execute>
+                </action> </item>
+            </menu>
+            <item label="Htop"> <action name="Execute">
+                <execute>alacritty -e htop</execute>
+            </action> </item>
+            <item label="Log Out"> <action name="Execute">
+                <execute>xfce4-session-logout</execute>
+            </action> </item>
+            <item label="Virtual Machine Manager"> <action name="Execute">
+                <execute>virt-manager</execute>
+            </action> </item>
+        </menu>
+        <menu id="38" label="Utilities">
+            <item label="About Xfce"> <action name="Execute">
+                <execute>xfce4-about</execute>
+            </action> </item>
+            <item label="Galculator"> <action name="Execute">
+                <execute>galculator</execute>
+            </action> </item>
+            <item label="Xarchiver"> <action name="Execute">
+                <execute>xarchiver</execute>
+            </action> </item>
+        </menu>
+        <separator/>
+        <menu id="40" label="OpenBox">
+            <menu id="client-list-menu"/>
+            <item label="Reconfigure"> <action name="Reconfigure"/> </item>
+            <separator/>
+            <item label="Exit"> <action name="Exit"/> </item>
+            <separator/>
+            <item label="Poweroff"> <action name="Execute">
+                    <execute>systemctl poweroff</execute>
+            </action> </item>
+            <separator/>
+            <item label="Reboot"> <action name="Execute">
+                    <execute>systemctl reboot</execute>
+            </action> </item>
+        </menu>
+    </menu>
+</openbox_menu>
