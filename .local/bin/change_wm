@@ -1,0 +1,33 @@
+#!/bin/sh
+
+if [ "$(id -u)" = 0 ]; then
+    echo
+    echo "##################################################################"
+    echo "NON ESEGUIRE QUESTO SCRIPT CON SUDO O PRIVILEGI DI ROOT !!!"
+    echo "Eseguilo come normale utente. Ti verra' chiesto di inserire"
+    echo "la password sudo solo quando necessario."
+    echo "##################################################################"
+    echo
+    exit 1
+fi
+
+choice=0
+while [ "$choice" != "1" ] && [ "$choice" != "2" ] && [ "$choice" != "3" ]
+do
+    echo
+    echo "Scegli il Window Manager o compositor Wayland predefinito:"
+    echo "  1) Hyprland (Wayland)"
+    echo "  2) BSPWM (Xorg)"
+    echo "  3) Openbox (Xorg)"
+    read -p "Fai la tua scelta: " choice
+done
+
+case "$choice" in
+    1) sed -i 's/.*#dbus-run-session Hyprland/    dbus-run-session Hyprland/g;s/.*exec startx/    #exec startx/g' ~/.bash_profile ~/.zprofile;;
+    2) sed -i 's/^#exec bspwm/exec bspwm/g;s/^exec openbox-session/#exec openbox-session/g' ~/.xinitrc;
+        sed -i 's/.*dbus-run-session Hyprland/    #dbus-run-session Hyprland/g;s/.*#exec startx/    exec startx/g' ~/.bash_profile ~/.zprofile;
+        ln -sf ~/.config/tint2/tint2rc_bspwm ~/.config/tint2/tint2rc;;
+    3) sed -i 's/^#exec openbox-session/exec openbox-session/g;s/^exec bspwm/#exec bspwm/g' ~/.xinitrc;
+        sed -i 's/.*dbus-run-session Hyprland/    #dbus-run-session Hyprland/g;s/.*#exec startx/    exec startx/g' ~/.bash_profile ~/.zprofile;
+        ln -sf ~/.config/tint2/tint2rc_openbox ~/.config/tint2/tint2rc;;
+esac
