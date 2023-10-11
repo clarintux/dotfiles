@@ -93,6 +93,24 @@ read -p "Codice: " code
 sed -i "s/kb_layout = de/kb_layout = $code/g" ~/.config/hypr/hyprland.conf
 sed -i "s/setxkbmap de/setxkbmap $code/g" ~/.config/bspwm/bspwmrc ~/.config/openbox/autostart
 
+choice="T"
+while [ "$choice" != "W" ] && [ "$choice" != "C" ] && [ "$choice" != "A" ]
+do
+    echo
+    echo "Inserisci il tasto modificatore (W=SUPER, C=CTRL, A=ALT)."
+    read -p "(W / C / A): " choice
+done
+
+case "$choice" in
+    "C") sed -i 's/W-/C-/g' ~/.config/openbox/rc.xml ;
+            sed -i 's/super/ctrl/g' ~/.config/sxhkd/sxhkdrc ;
+            sed -i 's/mainMod = SUPER/mainMod = CTRL/g' ~/.config/hypr/hyprland.conf ;;
+    "A") sed -i 's/W-/A-/g' ~/.config/openbox/rc.xml ;
+            sed -i 's/super/ctrl/g' ~/.config/sxhkd/sxhkdrc ;
+            sed -i 's/mainMod = SUPER/mainMod = ALT/g' ~/.config/hypr/hyprland.conf ;;
+esac
+
+
 echo
 echo "Vuoi usare zsh come shell predefinita"
 read -p "per il tuo utente? (S/n) " choice
