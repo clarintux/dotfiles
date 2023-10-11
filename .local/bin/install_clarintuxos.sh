@@ -106,7 +106,7 @@ case "$choice" in
             sed -i 's/super/ctrl/g' ~/.config/sxhkd/sxhkdrc ;
             sed -i 's/mainMod = SUPER/mainMod = CTRL/g' ~/.config/hypr/hyprland.conf ;;
     "A") sed -i 's/W-/A-/g' ~/.config/openbox/rc.xml ;
-            sed -i 's/super/ctrl/g' ~/.config/sxhkd/sxhkdrc ;
+            sed -i 's/super/alt/g' ~/.config/sxhkd/sxhkdrc ;
             sed -i 's/mainMod = SUPER/mainMod = ALT/g' ~/.config/hypr/hyprland.conf ;;
 esac
 
