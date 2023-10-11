@@ -35,6 +35,9 @@
  Buon divertimento!
  Luigi (aka Clarintux)
 
+P.S.: Per ripristinare le tue vecchie configurazioni, semplicemente
+      recupera i file di backup sul percorso ~/.config-backup
+      e metti questi dotfiles al loro posto.
 
 
 ####################################################################
