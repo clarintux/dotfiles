@@ -1,0 +1,99 @@
+
+ ____                                  _   _     _
+| __ )  ___ _ ____   _____ _ __  _   _| |_(_)   (_)_ __
+|  _ \ / _ \ '_ \ \ / / _ \ '_ \| | | | __| |   | | '_ \
+| |_) |  __/ | | \ V /  __/ | | | |_| | |_| |   | | | | |
+|____/ \___|_| |_|\_/ \___|_| |_|\__,_|\__|_|   |_|_| |_|
+
+  ____ _            _       _               ___  ____     _
+ / ___| | __ _ _ __(_)_ __ | |_ _   ___  __/ _ \/ ___|   | |
+| |   | |/ _` | '__| | '_ \| __| | | \ \/ / | | \___ \   | |
+| |___| | (_| | |  | | | | | |_| |_| |>  <| |_| |___) |  |_|
+ \____|_|\__,_|_|  |_|_| |_|\__|\__,_/_/\_\\___/|____/   (_)
+
+
+ ClarintuxOS e' semplicemente il risultato delle mie configurazioni
+ su una distribuzione basata su Arch. E' nato senza pretese, con
+ l'unico scopo di automatizzare il processo di personalizzazione.
+
+ ClarintuxOS fa un uso intensivo della rete Tor, per aumentare la
+ privacy. Si aspetta di trovare la cartella decompressa del Tor
+ browser sul percorso ~/.local/bin
+ Scaricati quindi il Tor browser, decomprimi il file e sposta la
+ cartella su questo persorso. Altrimenti modifica le chiamate al
+ Tor browser sui file di configurazioni interessati e configura il
+ tutto per usare il tuo browser preferito.
+
+ Alcuni script/programmi su ClarintuxOS usano torsocks. Abilita
+ quindi tor con: sudo systemctl enable tor
+ Se vuoi usare neomutt, devi ovviamente configurarlo con i dati
+ della tua casella email.
+
+ ClarintuxOS non installa alcun Desktop Environmet, solo Window
+ Managers e Wayland compositors.
+
+ Buon divertimento!
+ Luigi (aka Clarintux)
+
+
+
+####################################################################
+#                                                                  #
+#             Queste sono alcune combinazioni di tasti             #
+#             predefinite su ClarintuxOS.                          #
+#                                                                  #
+####################################################################
+
+Il tasto modificatore di default e' SUPER.
+Sostituisci SUPER con CTRL o ALT, se hai scelto uno di questi tasti...
+
+-------------------------------------------------------------------------------------
+1) Valide su Hyprland, Bspwm e Openbox:
+SUPER + INVIO                          = terminale
+SUPER + SPAZIO                         = lanciatore dmenu/bemenu
+SUPER + Q                              = chiudi finestra
+SUPER + f                              = toggle fullscreen
+SUPER + TAB                            = focus sulla prossima finestra
+CTRL + ALT + tasti direzionali         = muovi su altro desktop
+SHIFT + CTRL + ALT + tasti direzionali = muovi finestra su altro desktop
+SUPER + numero da 0 a 9                = muovi sul desktop specificato
+SHIFT + SUPER + numero da 0 a 9        = muovi finestra sul desktop specificato
+SUPER + B                              = Tor Browser
+SUPER + N                              = file manager Thunar
+SHIFT + SUPER + N                      = file manager su dmenu/bemenu
+SUPER + E                              = editare dotfiles tramite dmenu/bemenu
+SUPER + M                              = playlist musicale tramite MPD e dmenu/bemenu
+SHIFT + SUPER + F                      = ricerca di file/parole tramite dmenu/bemenu
+SUPER + C                              = calcoli tramite dmenu/bemenu
+SUPER + D                              = traduzioni di parole tramite dmenu/bemenu
+SUPER + Y                              = Video YouTube tramite dmenu/bemenu
+SUPER + W                              = cambio random di wallpaper
+SUPER + R                              = registra schermo
+PRINT                                  = screenshot
+SUPER + V                              = webcam tramite mpv
+TASTI VOLUME, PAUSA, NEXT eccetera     = esattamente cio' che ci si aspetterebbe
+CTRL + ALT + L                         = blocco schermo
+SUPER + ESCAPE                         = Menu per spegnere/riavviare/uscire
+-------------------------------------------------------------------------------------
+
+2) Valide su Hyprland:
+SHIFT + SUPER + INVIO                  = terminale simil-scratchpad
+SUPER + T                              = toggle floating
+SUPER + PLUS                           = incrementa gaps
+SUPER + MINUS                          = decrementa gaps
+-------------------------------------------------------------------------------------
+
+3) Valide su bspwm:
+SHIFT + SUPER + INVIO                  = terminale scratchpad
+SUPER + ALT + R                        = riavvia bspwm e le combinazioni di sxhkd
+SUPER + PLUS                           = incremento gaps
+SUPER + MINUS                          = decremento gaps
+SUPER + S                              = finestra floating 
+SUPER + T                              = finestra tiled
+-------------------------------------------------------------------------------------
+
+4) Valide su Openbox:
+CTRL + ALT + D                         = mostra desktop, minimizza/massimizza windows
+SUPER + LEFT                           = sposta finestra sul 50% sinistro
+SUPER + RIGHT                          = sposta finestra sul 50% destro
+-------------------------------------------------------------------------------------
