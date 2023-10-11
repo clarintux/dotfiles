@@ -4,8 +4,6 @@ OLD=$( grep -E "png|jpg" .config/nitrogen/bg-saved.cfg | cut -d "/" -f6 )
 
 NEW=$( ls $HOME/Immagini/wallpapers | shuf -n 1 )
 
-swaybg -m fill -i ~/Immagini/wallpapers/$NEW &
-
 sed -i "s/$OLD/$NEW/g" .config/nitrogen/bg-saved.cfg
 
-nitrogen --restore 2>/dev/null
+swaybg -m fill -i ~/Immagini/wallpapers/$NEW || nitrogen --restore 2>/dev/null
