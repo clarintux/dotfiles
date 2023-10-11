@@ -140,6 +140,8 @@ case "$choice" in
         ln -sf ~/.config/tint2/tint2rc_openbox ~/.config/tint2/tint2rc;;
 esac
 
+chmod +x ~/.local/bin/*
+
 echo
 echo "Ho finito! Riavvia e il gioco e' fatto..."
 echo "Non dimenticare di installare Tor Browser e torsocks!!!"
