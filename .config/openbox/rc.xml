@@ -570,6 +570,15 @@
         <command>~/.local/bin/dmenu_screenshot</command>
       </action>
     </keybind>
+    <keybind key="W-F1">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>true</enabled>
+          <name>dmenu_virtual</name>
+        </startupnotify>
+        <command>~/.local/bin/dmenu_virtual</command>
+      </action>
+    </keybind>
     <keybind key="C-A-m">
       <action name="ShowMenu">
         <menu>root-menu</menu>
