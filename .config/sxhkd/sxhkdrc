@@ -18,6 +18,10 @@ super + b
 super + n
 	$FILE_VISUAL
 
+# Launch Virtual Machine
+super + F1
+    $HOME/.local/bin/dmenu_virtual
+
 # dmenu filemanager
 super + shift + n
     $HOME/.local/bin/dmenu_filemanager
