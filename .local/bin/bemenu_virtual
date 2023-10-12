@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if [ -f $HOME/.config/bemenurc ]; then
+  . $HOME/.config/bemenurc
+else
+  BEMENU='bemenu -i'
+fi
+
+VM=$(LANG="C" virsh list --inactive | awk '{print $2}' | grep -v "Name" | sed '/^$/d' | $BEMENU -p "Virtual Machine:")
+
+EXIST=$(virsh list --inactive | grep "$VM")
+
+[[ ! "$VM" ]] || [[ ! "$EXIST" ]]&& exit
+
+virsh start $VM &> /dev/null
+virt-manager --connect=qemu:///session --show-domain-console $VM
