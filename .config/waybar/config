@@ -15,6 +15,10 @@
         //"hyprland/window"
 	],
 
+    "modules-center": [
+        "custom/weather"
+    ],
+
 	"modules-right": [
 		"custom/arrow9",
 		"pulseaudio",
@@ -181,6 +185,14 @@
 		],
 		"tooltip": false
 	},
+
+    "custom/weather": {
+        "format": "{}  ",
+        "interval": 3600,
+        "exec": "curl https://wttr.in/Frankfurt?format=3",
+        "tooltip": false,
+        "on-click": "alacritty --class=weather -o 'font.size: 9' --hold -e ~/.local/bin/weather"
+    },
 
 	"tray": {
 		"icon-size": 18,
