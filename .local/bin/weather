@@ -1,0 +1,112 @@
+#!/bin/sh
+
+file="/tmp/wttr.jason"
+
+declare -A codes=( \
+[113]="☀️"   \
+[116]="🌤️"  \
+[119]="☁️"   \
+[122]="🌥️"  \
+[143]="🌫️"  \
+[176]="🌦️"  \
+[179]="🌧️"  \
+[182]="🌨️"  \
+[185]="🌨️"  \
+[200]="🌩️"  \
+[227]="❄️"   \
+[230]="❄️"   \
+[248]="🌫️"  \
+[260]="🌫️"  \
+[263]="🌧️"  \
+[266]="🌧️"  \
+[281]="🌦️"  \
+[284]="🌦️"  \
+[293]="🌧️"  \
+[296]="🌧️"  \
+[299]="🌧️"  \
+[302]="🌧️"  \
+[305]="🌧️"  \
+[308]="🌧️"  \
+[311]="🌧️"  \
+[314]="🌧️"  \
+[317]="🌧️"  \
+[320]="🌨️"  \
+[323]="🌨️"  \
+[326]="🌨️"  \
+[329]="🌨️"  \
+[332]="🌨️"  \
+[335]="🌨️"  \
+[338]="🌨️"  \
+[350]="🌨️"  \
+[353]="🌧️"  \
+[356]="🌧️"  \
+[359]="🌧️"  \
+[362]="🌨️"  \
+[365]="🌨️"  \
+[368]="🌨️"  \
+[371]="🌨️"  \
+[374]="🌨️"  \
+[377]="🌨️"  \
+[386]="🌩️"  \
+[389]="🌨️"  \
+[392]="🌨️"  \
+[395]="🌨️"  \
+[398]="🌨️"  \
+[401]="🌨️"  \
+[404]="🌨️"  \
+[407]="🌨️"  \
+[410]="🌨️"  \
+[413]="🌨️"  \
+[416]="🌨️"  \
+[419]="🌨️"  \
+[422]="🌨️"  \
+[425]="🌨️"  \
+[428]="🌨️"  \
+[431]="🌨️"  \
+)
+
+wget "https://wttr.in/Frankfurt?format=j1" -O $file &> /dev/null
+
+weatherDesc=$(jq '.current_condition.[].weatherDesc.[].value' $file)
+temp_C=$(jq '.current_condition.[].temp_C' $file)
+wind=$(jq '.current_condition.[].windspeedKmph' $file)
+humidity=$(jq '.current_condition.[].humidity' $file)
+feels=$(jq '.current_condition.[].FeelsLikeC' $file)
+
+
+echo -en "\e[1m"
+echo "$weatherDesc $temp_C°" | sed 's/"//g'
+echo -en '\001\033[0m\002'
+echo "Feels like: $feels°" | sed 's/"//g'
+echo "Wind: ${wind}Km/h" | sed 's/"//g'
+echo "Humidity: ${humidity}%" | sed 's/"//g'
+
+for i in {0..2}
+do
+    echo
+    if [ $i = 0 ]; then
+        printf '\e[1m%s\e[m' "Today, "
+    elif [ $i = 1 ]; then
+        printf '\e[1m%s\e[m' "Tomorrow, "
+    fi
+    date=$(jq ".weather.[$i].date" $file)
+    max=$(jq ".weather.[$i].maxtempC" $file)
+    min=$(jq ".weather.[$i].mintempC" $file)
+    sunrise=$(jq ".weather.[$i].astronomy.[].sunrise" $file)
+    sunset=$(jq ".weather.[$i].astronomy.[].sunset" $file)
+    printf '\e[1m%s\e[m\n' $date | sed 's/"//g'
+    echo "⬆️  $max  ⬇  $min  🌅 $sunrise  🌇 $sunset" | sed 's/"//g'
+
+    for j in {0..7}
+    do
+        time=$(jq ".weather.[$i].hourly.[$j].time" $file | sed 's/"//g;s/00//g')
+        code=$(jq ".weather.[$i].hourly.[$j].weatherCode" $file | sed 's/"//g')
+        temp=$(jq ".weather.[$i].hourly.[$j].tempC" $file | sed 's/"//g')
+        desc=$(jq ".weather.[$i].hourly.[$j].weatherDesc.[].value" $file | sed 's/"//g')
+        if [ "$time" -le 10 ]; then
+            printf "0"
+        fi
+        printf "%s %s %3s %s\n" $time ${codes[$code]} $temp "$desc"
+    done
+
+done
